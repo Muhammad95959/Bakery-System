@@ -20,7 +20,7 @@ export function SidebarLink({ to, icon, label, active }: SidebarLinkProps) {
         <div className="w-9 flex justify-center">
           <img src={icon} className={iconColorClass} alt={`${label} icon`} />
         </div>
-        <p className={`text-[24px] ${textColorClass}`}>{label}</p>
+        <p className={`text-[24px] font-['Nunito'] ${textColorClass}`}>{label}</p>
       </Link>
     </li>
   );

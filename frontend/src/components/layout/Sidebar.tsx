@@ -1,12 +1,12 @@
-import bakeryLogo from "../../assets/bakery-logo.png";
-import dashboardIcon from "../../assets/icon-dashboard.png";
-import customerIcon from "../../assets/icon-customer.png";
-import productsIcon from "../../assets/icon-products.png";
-import ordersIcon from "../../assets/icon-orders.png";
-import reportsIcon from "../../assets/icon-reports.png";
-import manageStaffIcon from "../../assets/icon-manage-staff.png";
-import logoutIcon from "../../assets/icon-logout.png";
 import { useLocation } from "react-router-dom";
+import bakeryLogo from "../../assets/bakery-logo.png";
+import customerIcon from "../../assets/icon-customer.png";
+import dashboardIcon from "../../assets/icon-dashboard.png";
+import logoutIcon from "../../assets/icon-logout.png";
+import manageStaffIcon from "../../assets/icon-manage-staff.png";
+import ordersIcon from "../../assets/icon-orders.png";
+import productsIcon from "../../assets/icon-products.png";
+import reportsIcon from "../../assets/icon-reports.png";
 import { SidebarLink } from "../ui/SidebarLink";
 
 export default function Sidebar() {
@@ -29,7 +29,7 @@ export default function Sidebar() {
           <SidebarLink to={link.to} icon={link.icon} label={link.label} active={pathname === link.to} />
         ))}
       </ul>
-      <button className="flex gap-1 justify-center mt-20 items-center bg-[#FF7C00] p-1.5 rounded-[10px] w-[60%]">
+      <button className="flex gap-1 justify-center mt-20 items-center bg-[#FF7C00] p-1.5 rounded-[10px] w-[60%] cursor-pointer hover:opacity-90">
         <p className="text-[24px] text-[#F7E9B2]">Logout</p>
         <div className="w-9 flex justify-center">
           <img src={logoutIcon} />
