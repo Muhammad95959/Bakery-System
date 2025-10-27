@@ -1,0 +1,14 @@
+### login
+
+POST http://localhost:7373/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "admin"
+}
+
+
+### logout
+
+GET http://localhost:7373/api/auth/logout
