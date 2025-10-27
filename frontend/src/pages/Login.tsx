@@ -21,7 +21,7 @@ export default function Login() {
         <form className="min-w-[40%] max-w-[500px] mt-20 flex flex-col gap-6">
           <div className="border border-[#ABA89E] p-5 w-full flex gap-8 rounded-[10px] overflow-clip">
             <img src={mailIcon} />
-            <input type="email" placeholder="Email" className="text-[28px] outline-0 caret-[#ABA89E]" />
+            <input type="text" placeholder="Username" className="text-[28px] outline-0 caret-[#ABA89E]" />
           </div>
           <div className="border border-[#ABA89E] p-5 w-full flex gap-8 rounded-[10px] overflow-clip">
             <img src={lockIcon} />
