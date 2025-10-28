@@ -3,20 +3,17 @@ import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import prisma from "../../config/db";
 import { Role } from "../../generated/prisma/enums";
-import { User } from "../../generated/prisma/client";
+import safeUserData from "../../utils/safeUserData";
 
 function signToken(id: string) {
   if (!process.env.JWT_SECRET) throw new Error("JWT_SECRET is not defined");
   return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "7d" });
 }
 
-function safeUserData(user: User) {
-  const { id, username, role, createdAt, updatedAt } = user;
-  return { id, username, role, createdAt, updatedAt };
-}
-
 export function authorize(_req: Request, res: Response) {
-  res.status(200).json({ status: "success", message: "User is authenticated" });
+  res
+    .status(200)
+    .json({ status: "success", message: "User is authenticated", data: { user: safeUserData(res.locals.user) } });
 }
 
 export function restrict(...roles: Role[]) {
@@ -42,7 +39,7 @@ export async function protect(req: Request, res: Response, next: NextFunction) {
     res.locals.user = user;
     next();
   } catch (err) {
-    console.log((err as Error).message);
+    console.log(err);
     res.status(401).json({ status: "fail", message: "Invalid or expired token" });
   }
 }
@@ -65,7 +62,7 @@ export async function login(req: Request, res: Response) {
       .status(200)
       .json({ status: "success", message: "User logged in successfully", data: { user: safeUserData(user) } });
   } catch (err) {
-    console.log((err as Error).message);
+    console.log(err);
     res.status(500).json({ status: "fail", message: "Something went wrong" });
   }
 }
