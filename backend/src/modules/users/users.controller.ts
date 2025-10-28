@@ -1,8 +1,8 @@
+import bcrypt from "bcryptjs";
 import { Request, Response } from "express";
 import prisma from "../../config/db";
-import safeUserData from "../../utils/safeUserData";
-import bcrypt from "bcryptjs";
 import { Role } from "../../generated/prisma/enums";
+import safeUserData from "../../utils/safeUserData";
 
 export async function getAllUsers(_req: Request, res: Response) {
   try {
