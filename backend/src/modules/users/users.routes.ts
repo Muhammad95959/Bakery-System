@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.get("/", authController.protect, usersController.getAllUsers);
 
-router.get("/:id", authController.protect, usersController.getOneUser);
+router.get("/:id", authController.protect, usersController.getUserById);
 
 router.post("/", authController.protect, authController.restrict(Role.ADMIN), usersController.createUser);
 

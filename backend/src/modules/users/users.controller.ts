@@ -14,7 +14,7 @@ export async function getAllUsers(_req: Request, res: Response) {
   }
 }
 
-export async function getOneUser(req: Request, res: Response) {
+export async function getUserById(req: Request, res: Response) {
   try {
     const { id } = req.params;
     const user = await prisma.user.findUnique({ where: { id } });
@@ -31,7 +31,7 @@ export async function createUser(req: Request, res: Response) {
     const { username, password, role } = req.body;
     if (!username || !password)
       return res.status(400).json({ status: "fail", message: "Please provide username and password" });
-    const user = await prisma.user.findUnique({where: {username}});
+    const user = await prisma.user.findUnique({ where: { username } });
     if (user) return res.status(400).json({ status: "fail", message: "User already exists" });
     const encryptedPassword = bcrypt.hashSync(password, 10);
     const newUser = await prisma.user.create({
@@ -51,7 +51,7 @@ export async function updateUser(req: Request, res: Response) {
     const data: { username?: string; password?: string; role?: Role } = {};
     if (username) data.username = username;
     if (password) data.password = bcrypt.hashSync(password, 10);
-    if (role) data.role = role;
+    if (role) data.role = role.toUpperCase();
     const updatedUser = await prisma.user.update({ where: { id }, data });
     res.status(200).json({ status: "success", data: { user: safeUserData(updatedUser) } });
   } catch (err) {
