@@ -1,3 +1,7 @@
+############
+### Auth ###
+############
+
 ### login
 
 POST http://localhost:7373/api/auth/login
@@ -12,3 +16,48 @@ Content-Type: application/json
 ### logout
 
 GET http://localhost:7373/api/auth/logout
+
+
+#############
+### Users ###
+#############
+
+### get all users
+
+GET http://localhost:7373/api/users
+Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNlYjBiNDZjLTkyODMtNGRjMi05OTcxLTE2NWZjNzAwZmI5NSIsImlhdCI6MTc2MTYxNDk3MiwiZXhwIjoxNzYyMjE5NzcyfQ.qZomvCFs8sTT53iH-OX8KKTndLVIMOJ4_lquCQG_TZU; Max-Age=604800; Path=/; Expires=Tue, 04 Nov 2025 01:29:32 GMT; HttpOnly
+
+
+### get user by id
+
+GET http://localhost:7373/api/users/ceb0b46c-9283-4dc2-9971-165fc700fb95
+Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNlYjBiNDZjLTkyODMtNGRjMi05OTcxLTE2NWZjNzAwZmI5NSIsImlhdCI6MTc2MTYxNDk3MiwiZXhwIjoxNzYyMjE5NzcyfQ.qZomvCFs8sTT53iH-OX8KKTndLVIMOJ4_lquCQG_TZU; Max-Age=604800; Path=/; Expires=Tue, 04 Nov 2025 01:29:32 GMT; HttpOnly
+
+
+### create new user
+
+POST http://localhost:7373/api/users
+Content-Type: application/json
+Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNlYjBiNDZjLTkyODMtNGRjMi05OTcxLTE2NWZjNzAwZmI5NSIsImlhdCI6MTc2MTYxNDk3MiwiZXhwIjoxNzYyMjE5NzcyfQ.qZomvCFs8sTT53iH-OX8KKTndLVIMOJ4_lquCQG_TZU; Max-Age=604800; Path=/; Expires=Tue, 04 Nov 2025 01:29:32 GMT; HttpOnly
+
+{
+  "username": "ahmed",
+  "password": "password"
+}
+
+
+### update user
+
+PATCH http://localhost:7373/api/users/24cf3678-6b42-4b87-968d-a7e4038054d2
+Content-Type: application/json
+Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNlYjBiNDZjLTkyODMtNGRjMi05OTcxLTE2NWZjNzAwZmI5NSIsImlhdCI6MTc2MTYxNDk3MiwiZXhwIjoxNzYyMjE5NzcyfQ.qZomvCFs8sTT53iH-OX8KKTndLVIMOJ4_lquCQG_TZU; Max-Age=604800; Path=/; Expires=Tue, 04 Nov 2025 01:29:32 GMT; HttpOnly
+
+{
+  "password": "newPassword"
+}
+
+
+### delete user
+
+DELETE http://localhost:7373/api/users/a4ea0e7e-9fbe-46e5-b531-fce816345303
+Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNlYjBiNDZjLTkyODMtNGRjMi05OTcxLTE2NWZjNzAwZmI5NSIsImlhdCI6MTc2MTYxNDk3MiwiZXhwIjoxNzYyMjE5NzcyfQ.qZomvCFs8sTT53iH-OX8KKTndLVIMOJ4_lquCQG_TZU; Max-Age=604800; Path=/; Expires=Tue, 04 Nov 2025 01:29:32 GMT; HttpOnly
