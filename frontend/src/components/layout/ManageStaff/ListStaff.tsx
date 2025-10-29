@@ -5,11 +5,11 @@ import StaffInfo from "../../ui/StaffInfo";
 
 export default function ListStaff() {
   const staffList = [
-    { name: "John Doe", phone: "123-456-7890", role: "Admin", status: "Active" },
-    { name: "Jane Smith", phone: "987-654-3210", role: "Staff", status: "Inactive" },
-    { name: "Alice Johnson", phone: "555-123-4567", role: "Staff", status: "Active" },
-    { name: "Bob Brown", phone: "444-987-6543", role: "Admin", status: "Active" },
-    { name: "Charlie Davis", phone: "333-222-1111", role: "Staff", status: "Inactive" },
+    { username: "John Doe", phone: "123-456-7890", role: "Admin", status: "Active" },
+    { username: "Jane Smith", phone: "987-654-3210", role: "Staff", status: "Inactive" },
+    { username: "Alice Johnson", phone: "555-123-4567", role: "Staff", status: "Active" },
+    { username: "Bob Brown", phone: "444-987-6543", role: "Admin", status: "Active" },
+    { username: "Charlie Davis", phone: "333-222-1111", role: "Staff", status: "Inactive" },
   ];
 
   return (
@@ -58,7 +58,7 @@ export default function ListStaff() {
           <p className="flex-1/5 text-center">Action</p>
         </div>
         {staffList.map((staff, index) => (
-          <StaffInfo key={index} name={staff.name} phone={staff.phone} role={staff.role} status={staff.status} />
+          <StaffInfo key={index} username={staff.username} phone={staff.phone} role={staff.role} status={staff.status} />
         ))}
       </div>
     </div>

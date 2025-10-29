@@ -2,13 +2,13 @@ import { Link } from "react-router-dom";
 import editIcon from "../../assets/icon-edit.svg";
 import trashIcon from "../../assets/icon-trash.svg";
 
-export default function StaffInfo(props: { name: string; phone: string; role: string; status: string }) {
+export default function StaffInfo(props: { username: string; phone: string; role: string; status: string }) {
   const statusColor = props.status.toLowerCase() === "active" ? "#ECF8E5" : "#FFECD8";
   const statusTextColor = props.status.toLowerCase() === "active" ? "#003702" : "#9B0300";
   return (
     <div className="p-6 border-t border-[rgba(87,90,56,0.26)] ">
       <div className="flex gap-6 justify-around items-center">
-        <p className="flex-1/5 text-center">{props.name}</p>
+        <p className="flex-1/5 text-center">{props.username}</p>
         <p className="flex-1/5 text-center">{props.phone}</p>
         <p className="flex-1/5 text-center">{props.role}</p>
         <div className="flex-1/5 text-center flex justify-center">
