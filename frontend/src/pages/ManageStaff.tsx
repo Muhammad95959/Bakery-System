@@ -6,7 +6,7 @@ import Sidebar from "../components/layout/Sidebar";
 function ManageStaff(props: { screen: "overview" | "add" | "update" }) {
   return (
     <div className="flex">
-      <div className="basis-[20%]">
+      <div className="w-[20%] min-w-[380px]">
         <Sidebar />
       </div>
       {props.screen === "overview" && <ListStaff />}

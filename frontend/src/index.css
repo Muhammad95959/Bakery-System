@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
 body {
-  @apply bg-[#FFFCEF] font-['Poppins'];
+  @apply bg-[#FFFFF6] font-['Poppins'];
+}
+
+* {
+  outline: none;
 }

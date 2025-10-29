@@ -6,7 +6,7 @@ import lockIcon from "../assets/icon-lock.svg";
 
 export default function Login() {
   return (
-    <div className="flex">
+    <div className="flex bg-[#FFFCEF]">
       <img
         src={bakeryLogo}
         className="absolute -mt-12 -ml-5 filter-[brightness(0)_saturate(100%)_invert(36%)_sepia(14%)_saturate(1035%)_hue-rotate(1deg)_brightness(94%)_contrast(91%)]"
