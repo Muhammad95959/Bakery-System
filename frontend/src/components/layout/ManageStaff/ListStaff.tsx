@@ -13,7 +13,7 @@ export default function ListStaff() {
   ];
 
   return (
-    <div className="p-20 basis-[80%]">
+    <div className="p-20 basis-[80%] flex flex-col max-h-screen">
       <div className="flex justify-between items-center mb-10">
         <h1 className="text-[48px] font-semibold">List Staff</h1>
         <div className="image bg-[#FFF8E2] p-4 rounded-[50%]">
@@ -30,7 +30,7 @@ export default function ListStaff() {
           <img src={searchIcon} className="absolute top-1/2 left-6 -translate-y-1/2 -z-1" />
         </div>
         <div className="relative flex-20/100">
-          <span className="absolute right-5 top-1/2 -translate-y-1/2 rotate-90 text-[#6B3D24]">&gt;</span>
+          <span className="absolute right-5 top-1/2 -translate-y-1/2 rotate-90 text-[#6B3D24] -z-1">&gt;</span>
           <select
             id="role"
             className="border border-[rgba(87,90,56,0.26)] p-4 rounded-md text-[#6B3D24] appearance-none w-full"
@@ -49,7 +49,7 @@ export default function ListStaff() {
           </button>
         </Link>
       </div>
-      <div className="rounded-xl border border-[rgba(87,90,56,0.26)]">
+      <div className="rounded-xl border border-[rgba(87,90,56,0.26)] overflow-y-auto min-h-0">
         <div className="flex justify-around p-4 font-semibold">
           <p className="flex-1/5 text-center">Username</p>
           <p className="flex-1/5 text-center">Phone</p>

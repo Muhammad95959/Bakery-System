@@ -13,7 +13,7 @@ export default function ListCustomers() {
   ];
 
   return (
-    <div className="p-20 basis-[80%]">
+    <div className="p-20 basis-[80%] flex flex-col max-h-screen">
       <div className="flex justify-between items-center mb-10">
         <h1 className="text-[48px] font-semibold">Customers</h1>
         <div className="image bg-[#FFF8E2] p-4 rounded-[50%]">
@@ -35,7 +35,7 @@ export default function ListCustomers() {
           </button>
         </Link>
       </div>
-      <div className="rounded-xl border border-[rgba(87,90,56,0.26)]">
+      <div className="rounded-xl border border-[rgba(87,90,56,0.26)] overflow-y-auto min-h-0">
         <div className="flex justify-around p-4 font-semibold">
           <p className="flex-2/9 text-center">Name</p>
           <p className="flex-2/9 text-center">Email</p>
