@@ -1,11 +1,17 @@
+import AddProduct from "../components/layout/Products/AddProducut";
+import EditProduct from "../components/layout/Products/EditProduct";
+import ListProducts from "../components/layout/Products/ListProducts";
 import Sidebar from "../components/layout/Sidebar";
 
-function Products() {
+function Products(props: { screen: "overview" | "add" | "update" }) {
   return (
     <div className="flex">
       <div className="basis-[20%]">
         <Sidebar />
       </div>
+      {props.screen === "overview" && <ListProducts />}
+      {props.screen === "add" && <AddProduct />}
+      {props.screen === "update" && <EditProduct />}
     </div>
   );
 }

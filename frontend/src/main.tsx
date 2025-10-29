@@ -14,11 +14,19 @@ const router = createBrowserRouter([
   { path: "/", element: <Login /> },
   { path: "/login", element: <Login /> },
   { path: "/dashboard", element: <Dashboard /> },
-  { path: "/customer", element: <Customer /> },
-  { path: "/products", element: <Products /> },
-  { path: "/orders", element: <Orders /> },
+  { path: "/customer", element: <Customer screen="overview" /> },
+  { path: "/customer/add", element: <Customer screen="add" /> },
+  { path: "/customer/update", element: <Customer screen="update" /> },
+  { path: "/products", element: <Products screen="overview" /> },
+  { path: "/products/add", element: <Products screen="add" /> },
+  { path: "/products/update", element: <Products screen="update" /> },
+  { path: "/orders", element: <Orders screen="overview" /> },
+  { path: "/orders/add", element: <Orders screen="add" /> },
+  { path: "/orders/details", element: <Orders screen="details" /> },
   { path: "/reports", element: <Reports /> },
-  { path: "/manage-staff", element: <ManageStaff /> },
+  { path: "/manage-staff", element: <ManageStaff screen="overview" /> },
+  { path: "/manage-staff/add", element: <ManageStaff screen="add" /> },
+  { path: "/manage-staff/update", element: <ManageStaff screen="update" /> },
 ]);
 
 createRoot(document.getElementById("root")!).render(

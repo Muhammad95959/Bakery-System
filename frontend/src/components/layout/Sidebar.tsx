@@ -26,7 +26,13 @@ export default function Sidebar() {
       <img src={bakeryLogo} className="w-[280px] h-[280px]" />
       <ul className="flex flex-col gap-7.5 w-[60%]">
         {links.map((link) => (
-          <SidebarLink to={link.to} icon={link.icon} label={link.label} active={pathname === link.to} />
+          <SidebarLink
+            key={link.to}
+            to={link.to}
+            icon={link.icon}
+            label={link.label}
+            active={pathname.startsWith(link.to)}
+          />
         ))}
       </ul>
       <button className="flex gap-1 justify-center mt-20 items-center bg-[#FF7C00] p-1.5 rounded-[10px] w-[60%] cursor-pointer hover:opacity-90">
