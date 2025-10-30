@@ -57,7 +57,7 @@ export default function AddProduct() {
                 <span className="absolute right-5 top-1/2 -translate-y-1/2 rotate-90 text-[#6B3D24]">&gt;</span>
                 <select className="w-full p-4 text-[rgba(107,61,36,0.9)] appearance-none caret-[rgba(87,90,56,0.52)] z-1 relative">
                   {productsCategories.map((category, index) => (
-                    <option key={index} className="bg-[rgba(255,248,226,0.7)] text-[#6B3D24]">
+                    <option key={index} className="text-[#6B3D24]">
                       {category}
                     </option>
                   ))}

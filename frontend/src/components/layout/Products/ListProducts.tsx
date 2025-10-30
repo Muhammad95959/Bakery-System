@@ -67,7 +67,7 @@ export default function ListProducts() {
               Filter
             </option>
             {productsCategories.map((product, index) => (
-              <option className="bg-[rgba(255,248,226,0.7)] text-[#6B3D24]" key={index}>
+              <option className="text-[#6B3D24]" key={index}>
                 {product}
               </option>
             ))}

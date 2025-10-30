@@ -38,9 +38,9 @@ export default function ListStaff() {
             <option disabled selected hidden>
               Role
             </option>
-            <option className="bg-[rgba(255,248,226,0.7)] text-[#6B3D24]">All</option>
-            <option className="bg-[rgba(255,248,226,0.7)] text-[#6B3D24]">Admin</option>
-            <option className="bg-[rgba(255,248,226,0.7)] text-[#6B3D24]">Staff</option>
+            <option className="text-[#6B3D24]">All</option>
+            <option className="text-[#6B3D24]">Admin</option>
+            <option className="text-[#6B3D24]">Staff</option>
           </select>
         </div>
         <Link to="/manage-staff/add" className="flex-15/100">
