@@ -59,10 +59,10 @@ export default function ListProducts() {
           />
           <img src={searchIcon} className="absolute top-1/2 left-6 -translate-y-1/2 -z-1" />
         </div>
-        <div className="relative flex flex-20/100 border border-[rgba(87,90,56,0.26)]">
+        <div className="relative flex flex-20/100 border border-[rgba(87,90,56,0.26)] rounded-md">
           <span className="absolute right-5 top-1/2 -translate-y-1/2 rotate-90 text-[#6B3D24] -z-1">&gt;</span>
           <img src={filterIcon} className="absolute left-5 top-1/2 -translate-y-1/2 -z-1" />
-          <select id="filter" className="p-4 pl-15 rounded-md text-[#6B3D24] appearance-none w-full">
+          <select id="filter" className="p-4 pl-15 text-[#6B3D24] appearance-none w-full">
             <option disabled selected hidden>
               Filter
             </option>

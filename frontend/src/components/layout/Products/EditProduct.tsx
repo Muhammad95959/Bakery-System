@@ -55,7 +55,7 @@ export default function EditProduct() {
               <p className="text-2xl font-semibold text-[#6B3D24] ml-3 mb-2">Category</p>
               <div className="relative w-full mb-6 bg-[#FFFDF2] border-3 border-[#FBEFD1] rounded-2xl">
                 <span className="absolute right-5 top-1/2 -translate-y-1/2 rotate-90 text-[#6B3D24]">&gt;</span>
-                <select className="w-full p-4 text-[rgba(107,61,36,0.9)] appearance-none caret-[rgba(87,90,56,0.52)]">
+                <select className="w-full p-4 text-[rgba(107,61,36,0.9)] appearance-none caret-[rgba(87,90,56,0.52)] z-1 relative">
                   {productsCategories.map((category, index) => (
                     <option key={index} className="bg-[rgba(255,248,226,0.7)] text-[#6B3D24]">
                       {category}
