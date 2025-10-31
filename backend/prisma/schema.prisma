@@ -9,15 +9,75 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(uuid())
-  username  String   @unique
+  id        String     @id @default(uuid())
+  username  String     @unique
   password  String
-  role      Role     @default(STAFF)
+  role      Role       @default(STAFF)
   phone     String?
   address   String?
-  status    Status   @default(ACTIVE)
+  status    UserStatus @default(ACTIVE)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+
+  Order Order[]
+
+  @@map("users")
+}
+
+model Customer {
+  id        String   @id @default(uuid())
+  name      String
+  email     String?  @unique
+  phone     String?  @unique
+  address   String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  Order Order[]
+
+  @@map("customers")
+}
+
+model Product {
+  id        Int      @id @default(autoincrement())
+  name      String
+  category  String
+  price     Decimal
+  stock     Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  CartItem CartItem[]
+
+  @@map("products")
+}
+
+model Order {
+  id            Int           @id @default(autoincrement())
+  user          User          @relation(fields: [userId], references: [id])
+  userId        String
+  customer      Customer      @relation(fields: [customerId], references: [id])
+  customerId    String
+  status        OrderStatus   @default(PENDING)
+  paymentMethod PaymentMethod @default(CASH)
+  cart          CartItem[]
+  total         Decimal       @default(0)
+  createdAt     DateTime      @default(now())
+
+  @@map("orders")
+}
+
+model CartItem {
+  id        Int      @id @default(autoincrement())
+  product   Product  @relation(fields: [productId], references: [id])
+  productId Int
+  order     Order    @relation(fields: [orderId], references: [id])
+  orderId   Int
+  quantity  Int
+  createdAt DateTime @default(now())
+
+  @@unique([productId, orderId])
+  @@map("cart_items")
 }
 
 enum Role {
@@ -25,7 +85,22 @@ enum Role {
   STAFF
 }
 
-enum Status {
+enum UserStatus {
   ACTIVE
   INACTIVE
+}
+
+enum OrderStatus {
+  PENDING
+  COMPLETED
+  CANCELLED
+}
+
+enum PaymentMethod {
+  CASH
+  CREDIT_CARD
+  DEBIT_CARD
+  BANK_TRANSFER
+  MOBILE_WALLET
+  ONLINE_PAYMENT
 }
