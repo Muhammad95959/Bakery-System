@@ -40,6 +40,7 @@ model Customer {
 
 model Product {
   id        Int      @id @default(autoincrement())
+  image     String
   name      String
   category  String
   price     Decimal
