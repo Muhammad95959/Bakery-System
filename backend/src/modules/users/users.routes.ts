@@ -11,7 +11,7 @@ router.get("/:id", authController.protect, usersController.getUserById);
 
 router.post("/", authController.protect, authController.restrict(Role.ADMIN), usersController.createUser);
 
-router.patch("/:id", authController.protect, authController.restrict(Role.ADMIN), usersController.updateUser);
+router.put("/:id", authController.protect, authController.restrict(Role.ADMIN), usersController.updateUser);
 
 router.delete("/:id", authController.protect, authController.restrict(Role.ADMIN), usersController.deleteUser);
 

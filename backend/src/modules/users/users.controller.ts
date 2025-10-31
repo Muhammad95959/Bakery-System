@@ -48,11 +48,11 @@ export async function updateUser(req: Request, res: Response) {
   try {
     const { id } = req.params;
     const { username, password, role } = req.body;
-    const data: { username?: string; password?: string; role?: Role } = {};
-    if (username) data.username = username;
-    if (password) data.password = bcrypt.hashSync(password, 10);
-    if (role) data.role = role.toUpperCase();
-    const updatedUser = await prisma.user.update({ where: { id }, data });
+    const encryptedPassword = bcrypt.hashSync(password, 10);
+    const updatedUser = await prisma.user.update({
+      where: { id },
+      data: { username, password: encryptedPassword, role: role.toUpperCase() },
+    });
     res.status(200).json({ status: "success", data: { user: safeUserData(updatedUser) } });
   } catch (err) {
     console.log(err);
