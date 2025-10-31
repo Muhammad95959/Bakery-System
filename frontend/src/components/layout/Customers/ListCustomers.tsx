@@ -37,11 +37,11 @@ export default function ListCustomers() {
       </div>
       <div className="rounded-xl border border-[rgba(87,90,56,0.26)] overflow-y-auto min-h-0">
         <div className="flex justify-around p-4 font-semibold">
-          <p className="flex-2/9 text-center">Name</p>
-          <p className="flex-2/9 text-center">Email</p>
-          <p className="flex-2/9 text-center">Phone</p>
-          <p className="flex-2/9 text-center">Address</p>
-          <p className="flex-1/9 text-center"></p>
+          <p className="flex-1/5 text-center">Name</p>
+          <p className="flex-1/5 text-center">Email</p>
+          <p className="flex-1/5 text-center">Phone</p>
+          <p className="flex-1/5 text-center">Address</p>
+          <p className="flex-1/5 text-center">Action</p>
         </div>
         {customers.map((customer, index) => (
           <CustomerInfo
