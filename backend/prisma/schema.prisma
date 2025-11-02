@@ -40,11 +40,11 @@ model Customer {
 
 model Product {
   id        Int      @id @default(autoincrement())
-  image     String
   name      String
   category  String
   price     Decimal
-  stock     Int
+  stock     Decimal
+  image     String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
