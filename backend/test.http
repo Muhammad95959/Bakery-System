@@ -25,20 +25,20 @@ GET http://localhost:7373/api/auth/logout
 ### get all users
 
 GET http://localhost:7373/api/users
-Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjlhNzNkYjM4LWZmNGMtNDcwYS04ZWY5LTkwYjdlZjM2MDhmZCIsImlhdCI6MTc2MTkzMzg5NSwiZXhwIjoxNzYyNTM4Njk1fQ.A5mzt22z2vGUEZe3-Chmqd1fJ0oBBuiwd4gf6Qs15GE; Max-Age=604800; Path=/; Expires=Fri, 07 Nov 2025 18:04:55 GMT; HttpOnly
+Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ2NzQyOTUwLTljMzgtNGI1Mi04ZjMzLTgwZGRhZTI3ZjVlNiIsImlhdCI6MTc2MjA4MjUyMSwiZXhwIjoxNzYyNjg3MzIxfQ.EWVmHHwmbRyH5V_e9YOfxU6sumyKJjxmLbE1ukza--0; Max-Age=604800; Path=/; Expires=Sun, 09 Nov 2025 11:22:01 GMT; HttpOnly
 
 
 ### get user by id
 
 GET http://localhost:7373/api/users/ceb0b46c-9283-4dc2-9971-165fc700fb95
-Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjlhNzNkYjM4LWZmNGMtNDcwYS04ZWY5LTkwYjdlZjM2MDhmZCIsImlhdCI6MTc2MTkzMzg5NSwiZXhwIjoxNzYyNTM4Njk1fQ.A5mzt22z2vGUEZe3-Chmqd1fJ0oBBuiwd4gf6Qs15GE; Max-Age=604800; Path=/; Expires=Fri, 07 Nov 2025 18:04:55 GMT; HttpOnly
+Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ2NzQyOTUwLTljMzgtNGI1Mi04ZjMzLTgwZGRhZTI3ZjVlNiIsImlhdCI6MTc2MjA4MjUyMSwiZXhwIjoxNzYyNjg3MzIxfQ.EWVmHHwmbRyH5V_e9YOfxU6sumyKJjxmLbE1ukza--0; Max-Age=604800; Path=/; Expires=Sun, 09 Nov 2025 11:22:01 GMT; HttpOnly
 
 
 ### create new user
 
 POST http://localhost:7373/api/users
 Content-Type: application/json
-Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjlhNzNkYjM4LWZmNGMtNDcwYS04ZWY5LTkwYjdlZjM2MDhmZCIsImlhdCI6MTc2MTkzMzg5NSwiZXhwIjoxNzYyNTM4Njk1fQ.A5mzt22z2vGUEZe3-Chmqd1fJ0oBBuiwd4gf6Qs15GE; Max-Age=604800; Path=/; Expires=Fri, 07 Nov 2025 18:04:55 GMT; HttpOnly
+Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ2NzQyOTUwLTljMzgtNGI1Mi04ZjMzLTgwZGRhZTI3ZjVlNiIsImlhdCI6MTc2MjA4MjUyMSwiZXhwIjoxNzYyNjg3MzIxfQ.EWVmHHwmbRyH5V_e9YOfxU6sumyKJjxmLbE1ukza--0; Max-Age=604800; Path=/; Expires=Sun, 09 Nov 2025 11:22:01 GMT; HttpOnly
 
 {
   "username": "ahmed",
@@ -50,7 +50,7 @@ Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjlhNzNkYjM4LWZmNGMtNDc
 
 PUT http://localhost:7373/api/users/24cf3678-6b42-4b87-968d-a7e4038054d2
 Content-Type: application/json
-Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjlhNzNkYjM4LWZmNGMtNDcwYS04ZWY5LTkwYjdlZjM2MDhmZCIsImlhdCI6MTc2MTkzMzg5NSwiZXhwIjoxNzYyNTM4Njk1fQ.A5mzt22z2vGUEZe3-Chmqd1fJ0oBBuiwd4gf6Qs15GE; Max-Age=604800; Path=/; Expires=Fri, 07 Nov 2025 18:04:55 GMT; HttpOnly
+Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ2NzQyOTUwLTljMzgtNGI1Mi04ZjMzLTgwZGRhZTI3ZjVlNiIsImlhdCI6MTc2MjA4MjUyMSwiZXhwIjoxNzYyNjg3MzIxfQ.EWVmHHwmbRyH5V_e9YOfxU6sumyKJjxmLbE1ukza--0; Max-Age=604800; Path=/; Expires=Sun, 09 Nov 2025 11:22:01 GMT; HttpOnly
 
 {
   "username": "muhammad",
@@ -62,7 +62,7 @@ Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjlhNzNkYjM4LWZmNGMtNDc
 ### delete user
 
 DELETE http://localhost:7373/api/users/a4ea0e7e-9fbe-46e5-b531-fce816345303
-Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjlhNzNkYjM4LWZmNGMtNDcwYS04ZWY5LTkwYjdlZjM2MDhmZCIsImlhdCI6MTc2MTkzMzg5NSwiZXhwIjoxNzYyNTM4Njk1fQ.A5mzt22z2vGUEZe3-Chmqd1fJ0oBBuiwd4gf6Qs15GE; Max-Age=604800; Path=/; Expires=Fri, 07 Nov 2025 18:04:55 GMT; HttpOnly
+Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ2NzQyOTUwLTljMzgtNGI1Mi04ZjMzLTgwZGRhZTI3ZjVlNiIsImlhdCI6MTc2MjA4MjUyMSwiZXhwIjoxNzYyNjg3MzIxfQ.EWVmHHwmbRyH5V_e9YOfxU6sumyKJjxmLbE1ukza--0; Max-Age=604800; Path=/; Expires=Sun, 09 Nov 2025 11:22:01 GMT; HttpOnly
 
 
 #################
@@ -72,20 +72,20 @@ Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjlhNzNkYjM4LWZmNGMtNDc
 ### get all customers
 
 GET http://localhost:7373/api/customers
-Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjlhNzNkYjM4LWZmNGMtNDcwYS04ZWY5LTkwYjdlZjM2MDhmZCIsImlhdCI6MTc2MTkzMzg5NSwiZXhwIjoxNzYyNTM4Njk1fQ.A5mzt22z2vGUEZe3-Chmqd1fJ0oBBuiwd4gf6Qs15GE; Max-Age=604800; Path=/; Expires=Fri, 07 Nov 2025 18:04:55 GMT; HttpOnly
+Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ2NzQyOTUwLTljMzgtNGI1Mi04ZjMzLTgwZGRhZTI3ZjVlNiIsImlhdCI6MTc2MjA4MjUyMSwiZXhwIjoxNzYyNjg3MzIxfQ.EWVmHHwmbRyH5V_e9YOfxU6sumyKJjxmLbE1ukza--0; Max-Age=604800; Path=/; Expires=Sun, 09 Nov 2025 11:22:01 GMT; HttpOnly
 
 
 ### get customer by id
 
 GET http://localhost:7373/api/customers/318528cd-251b-42df-84e1-5eabc183ede3
-Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjlhNzNkYjM4LWZmNGMtNDcwYS04ZWY5LTkwYjdlZjM2MDhmZCIsImlhdCI6MTc2MTkzMzg5NSwiZXhwIjoxNzYyNTM4Njk1fQ.A5mzt22z2vGUEZe3-Chmqd1fJ0oBBuiwd4gf6Qs15GE; Max-Age=604800; Path=/; Expires=Fri, 07 Nov 2025 18:04:55 GMT; HttpOnly
+Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ2NzQyOTUwLTljMzgtNGI1Mi04ZjMzLTgwZGRhZTI3ZjVlNiIsImlhdCI6MTc2MjA4MjUyMSwiZXhwIjoxNzYyNjg3MzIxfQ.EWVmHHwmbRyH5V_e9YOfxU6sumyKJjxmLbE1ukza--0; Max-Age=604800; Path=/; Expires=Sun, 09 Nov 2025 11:22:01 GMT; HttpOnly
 
 
 ### create new customer
 
 POST http://localhost:7373/api/customers
 Content-Type: application/json
-Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjlhNzNkYjM4LWZmNGMtNDcwYS04ZWY5LTkwYjdlZjM2MDhmZCIsImlhdCI6MTc2MTkzMzg5NSwiZXhwIjoxNzYyNTM4Njk1fQ.A5mzt22z2vGUEZe3-Chmqd1fJ0oBBuiwd4gf6Qs15GE; Max-Age=604800; Path=/; Expires=Fri, 07 Nov 2025 18:04:55 GMT; HttpOnly
+Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ2NzQyOTUwLTljMzgtNGI1Mi04ZjMzLTgwZGRhZTI3ZjVlNiIsImlhdCI6MTc2MjA4MjUyMSwiZXhwIjoxNzYyNjg3MzIxfQ.EWVmHHwmbRyH5V_e9YOfxU6sumyKJjxmLbE1ukza--0; Max-Age=604800; Path=/; Expires=Sun, 09 Nov 2025 11:22:01 GMT; HttpOnly
 
 {
   "name": "muhammad",
@@ -97,7 +97,7 @@ Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjlhNzNkYjM4LWZmNGMtNDc
 
 PUT http://localhost:7373/api/customers/318528cd-251b-42df-84e1-5eabc183ede3
 Content-Type: application/json
-Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjlhNzNkYjM4LWZmNGMtNDcwYS04ZWY5LTkwYjdlZjM2MDhmZCIsImlhdCI6MTc2MTkzMzg5NSwiZXhwIjoxNzYyNTM4Njk1fQ.A5mzt22z2vGUEZe3-Chmqd1fJ0oBBuiwd4gf6Qs15GE; Max-Age=604800; Path=/; Expires=Fri, 07 Nov 2025 18:04:55 GMT; HttpOnly
+Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ2NzQyOTUwLTljMzgtNGI1Mi04ZjMzLTgwZGRhZTI3ZjVlNiIsImlhdCI6MTc2MjA4MjUyMSwiZXhwIjoxNzYyNjg3MzIxfQ.EWVmHHwmbRyH5V_e9YOfxU6sumyKJjxmLbE1ukza--0; Max-Age=604800; Path=/; Expires=Sun, 09 Nov 2025 11:22:01 GMT; HttpOnly
 
 {
   "name": "muhammad",
@@ -109,4 +109,26 @@ Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjlhNzNkYjM4LWZmNGMtNDc
 ### delete customer
 
 DELETE http://localhost:7373/api/customers/e1239588-c2a7-4427-9625-de8a9e1ec9cb
-Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjlhNzNkYjM4LWZmNGMtNDcwYS04ZWY5LTkwYjdlZjM2MDhmZCIsImlhdCI6MTc2MTkzMzg5NSwiZXhwIjoxNzYyNTM4Njk1fQ.A5mzt22z2vGUEZe3-Chmqd1fJ0oBBuiwd4gf6Qs15GE; Max-Age=604800; Path=/; Expires=Fri, 07 Nov 2025 18:04:55 GMT; HttpOnly
+Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ2NzQyOTUwLTljMzgtNGI1Mi04ZjMzLTgwZGRhZTI3ZjVlNiIsImlhdCI6MTc2MjA4MjUyMSwiZXhwIjoxNzYyNjg3MzIxfQ.EWVmHHwmbRyH5V_e9YOfxU6sumyKJjxmLbE1ukza--0; Max-Age=604800; Path=/; Expires=Sun, 09 Nov 2025 11:22:01 GMT; HttpOnly
+
+
+################
+### Products ###
+################
+
+### get all products
+
+GET http://localhost:7373/api/products
+Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ2NzQyOTUwLTljMzgtNGI1Mi04ZjMzLTgwZGRhZTI3ZjVlNiIsImlhdCI6MTc2MjA4MjUyMSwiZXhwIjoxNzYyNjg3MzIxfQ.EWVmHHwmbRyH5V_e9YOfxU6sumyKJjxmLbE1ukza--0; Max-Age=604800; Path=/; Expires=Sun, 09 Nov 2025 11:22:01 GMT; HttpOnly
+
+
+### get product by id
+
+GET http://localhost:7373/api/products/1
+Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ2NzQyOTUwLTljMzgtNGI1Mi04ZjMzLTgwZGRhZTI3ZjVlNiIsImlhdCI6MTc2MjA4MjUyMSwiZXhwIjoxNzYyNjg3MzIxfQ.EWVmHHwmbRyH5V_e9YOfxU6sumyKJjxmLbE1ukza--0; Max-Age=604800; Path=/; Expires=Sun, 09 Nov 2025 11:22:01 GMT; HttpOnly
+
+
+### delete product
+
+DELETE http://localhost:7373/api/products/2
+Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ2NzQyOTUwLTljMzgtNGI1Mi04ZjMzLTgwZGRhZTI3ZjVlNiIsImlhdCI6MTc2MjA4MjUyMSwiZXhwIjoxNzYyNjg3MzIxfQ.EWVmHHwmbRyH5V_e9YOfxU6sumyKJjxmLbE1ukza--0; Max-Age=604800; Path=/; Expires=Sun, 09 Nov 2025 11:22:01 GMT; HttpOnly
