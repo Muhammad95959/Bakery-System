@@ -11,7 +11,7 @@ const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors());
+app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 
 app.get("/", (_req, res) => res.end("Bakery API"));
 app.use("/api/auth", authRouter);
