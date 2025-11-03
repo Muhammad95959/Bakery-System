@@ -2,6 +2,12 @@
 ### Auth ###
 ############
 
+### authorize
+
+GET http://localhost:7373/api/auth
+Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjliZWI3Zjk1LWNmNmEtNDI4Ny1hMjVhLWRkYjU2Y2JhZjk5MyIsImlhdCI6MTc2MjE2ODcyNywiZXhwIjoxNzYyNzczNTI3fQ.jSvicKYncMx_SM6n47kaeggVAzliD7WcvG6kzACPV6Q; Max-Age=604800; Path=/; Expires=Mon, 10 Nov 2025 11:18:47 GMT; HttpOnly
+
+
 ### login
 
 POST http://localhost:7373/api/auth/login

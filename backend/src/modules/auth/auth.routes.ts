@@ -3,7 +3,7 @@ import * as authController from "./auth.controller";
 
 const router = express.Router();
 
-router.get("/", authController.authorize);
+router.get("/", authController.protect, authController.authorize);
 
 router.post("/login", authController.login);
 
