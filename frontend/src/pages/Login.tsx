@@ -17,10 +17,14 @@ export default function Login() {
   async function login(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     await axios
-      .post(`${BACKEND_URL}/auth/login`, {
-        username: usernameRef.current?.value,
-        password: passwordRef.current?.value,
-      })
+      .post(
+        `${BACKEND_URL}/auth/login`,
+        {
+          username: usernameRef.current?.value,
+          password: passwordRef.current?.value,
+        },
+        { withCredentials: true },
+      )
       .then((res) => {
         if (res.data.data.user.role.toLowerCase() === "admin") navigate("/manage-staff");
         else navigate("/orders");
@@ -30,7 +34,6 @@ export default function Login() {
 
   return (
     <div className="flex bg-[#FFFCEF]">
-      <ToastContainer position="bottom-center" autoClose={3000} />
       <img
         src={bakeryLogo}
         className="absolute -mt-12 -ml-5 filter-[brightness(0)_saturate(100%)_invert(36%)_sepia(14%)_saturate(1035%)_hue-rotate(1deg)_brightness(94%)_contrast(91%)]"
@@ -71,6 +74,7 @@ export default function Login() {
           </button>
         </form>
       </div>
+      <ToastContainer position="bottom-center" autoClose={3000} />
     </div>
   );
 }
