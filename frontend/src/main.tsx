@@ -1,4 +1,3 @@
-import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
@@ -29,8 +28,4 @@ const router = createBrowserRouter([
   { path: "/manage-staff/update", element: <ManageStaff screen="update" /> },
 ]);
 
-createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    <RouterProvider router={router} />
-  </StrictMode>,
-);
+createRoot(document.getElementById("root")!).render(<RouterProvider router={router} />);
