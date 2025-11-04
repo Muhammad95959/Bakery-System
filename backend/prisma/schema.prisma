@@ -55,7 +55,7 @@ model Order {
   id            Int           @id @default(autoincrement())
   user          User          @relation(fields: [userId], references: [id])
   userId        String
-  customer      String
+  customer      String        @default("Customer")
   status        OrderStatus   @default(PENDING)
   paymentMethod PaymentMethod @default(CASH)
   total         Decimal       @default(0) @db.Decimal(8, 2)
