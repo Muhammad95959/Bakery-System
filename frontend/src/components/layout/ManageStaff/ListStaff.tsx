@@ -2,15 +2,30 @@ import { Link } from "react-router-dom";
 import searchIcon from "../../../assets/icon-search.svg";
 import userIcon from "../../../assets/icon-user.svg";
 import StaffInfo from "../../ui/StaffInfo";
+import { useEffect, useState } from "react";
+import type IUser from "../../../interfaces/IUser";
+import axios from "axios";
+import { BACKEND_URL } from "../../../constants";
+import { ToastContainer, toast } from "react-toastify";
 
 export default function ListStaff() {
-  const staffList = [
-    { username: "John Doe", phone: "123-456-7890", role: "Admin", status: "Active" },
-    { username: "Jane Smith", phone: "987-654-3210", role: "Staff", status: "Inactive" },
-    { username: "Alice Johnson", phone: "555-123-4567", role: "Staff", status: "Active" },
-    { username: "Bob Brown", phone: "444-987-6543", role: "Admin", status: "Active" },
-    { username: "Charlie Davis", phone: "333-222-1111", role: "Staff", status: "Inactive" },
-  ];
+  const [users, setUsers] = useState<IUser[]>();
+
+  const [unAuthorized, setUnauthorized] = useState(false);
+
+  useEffect(() => {
+    axios
+      .get(`${BACKEND_URL}/auth`, { withCredentials: true })
+      .then((res) => setUnauthorized(res.data.data.user.role.toLowerCase() !== "admin"));
+    axios
+      .get(`${BACKEND_URL}/users`, { withCredentials: true })
+      .then((res) => setUsers(res.data.data.users))
+      .catch((err) => toast.error(err.response.data.message));
+  }, []);
+
+  function handleDeleteUser(id: string) {
+    setUsers(users?.filter((user) => user.id !== id));
+  }
 
   return (
     <div className="p-20 basis-[80%] flex flex-col max-h-screen">
@@ -44,7 +59,10 @@ export default function ListStaff() {
           </select>
         </div>
         <Link to="/manage-staff/add" className="flex-15/100">
-          <button className="cursor-pointer bg-[#FFAC3E] p-3 text-white rounded-md hover:opacity-92 w-full">
+          <button
+            className="cursor-pointer bg-[#FFAC3E] p-3 text-white rounded-md hover:opacity-92 w-full disabled:opacity-50 disabled:cursor-not-allowed"
+            disabled={unAuthorized}
+          >
             + Add Staff
           </button>
         </Link>
@@ -57,10 +75,20 @@ export default function ListStaff() {
           <p className="flex-1/5 text-center">Status</p>
           <p className="flex-1/5 text-center">Action</p>
         </div>
-        {staffList.map((staff, index) => (
-          <StaffInfo key={index} username={staff.username} phone={staff.phone} role={staff.role} status={staff.status} />
+        {users?.map((user: IUser, index: number) => (
+          <StaffInfo
+            key={index}
+            id={user.id}
+            username={user.username}
+            phone={user.phone}
+            role={user.role}
+            status={user.status}
+            unAuthorized={unAuthorized}
+            handleDeleteUser={handleDeleteUser}
+          />
         ))}
       </div>
+      <ToastContainer position="bottom-center" autoClose={3000} />
     </div>
   );
 }

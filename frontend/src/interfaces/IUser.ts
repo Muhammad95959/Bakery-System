@@ -1,0 +1,11 @@
+export default interface IUser {
+  id: string;
+  username: string;
+  password: string;
+  role: string;
+  status: string;
+  phone?: string;
+  address?: string;
+  createdAt: string;
+  updatedAt: string;
+}

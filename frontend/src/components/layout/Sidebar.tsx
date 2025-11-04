@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import bakeryLogo from "../../assets/bakery-logo.png";
 import customerIcon from "../../assets/icon-customer.png";
 import dashboardIcon from "../../assets/icon-dashboard.png";
@@ -8,8 +8,11 @@ import ordersIcon from "../../assets/icon-orders.png";
 import productsIcon from "../../assets/icon-products.png";
 import reportsIcon from "../../assets/icon-reports.png";
 import { SidebarLink } from "../ui/SidebarLink";
+import axios from "axios";
+import { BACKEND_URL } from "../../constants";
 
 export default function Sidebar() {
+  const navigate = useNavigate();
   const { pathname } = useLocation();
 
   const links = [
@@ -20,6 +23,10 @@ export default function Sidebar() {
     { to: "/reports", icon: reportsIcon, label: "Reports" },
     { to: "/manage-staff", icon: manageStaffIcon, label: "Manage Staff" },
   ];
+
+  function logout() {
+    axios.get(`${BACKEND_URL}/auth/logout`, { withCredentials: true }).then(() => navigate("/login"));
+  }
 
   return (
     <div className="bg-[#6B3D24] flex flex-col items-center h-screen">
@@ -35,7 +42,10 @@ export default function Sidebar() {
           />
         ))}
       </ul>
-      <button className="flex gap-1 justify-center mt-20 items-center bg-[#FF7C00] p-1.5 rounded-[10px] w-[60%] cursor-pointer hover:opacity-90">
+      <button
+        onClick={logout}
+        className="flex gap-1 justify-center mt-20 items-center bg-[#FF7C00] p-1.5 rounded-[10px] w-[60%] cursor-pointer hover:opacity-90"
+      >
         <p className="text-[24px] text-[#F7E9B2]">Logout</p>
         <div className="w-9 flex justify-center">
           <img src={logoutIcon} />
