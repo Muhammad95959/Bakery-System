@@ -48,6 +48,9 @@ export async function updateUser(req: Request, res: Response) {
   try {
     const { id } = req.params;
     const { username, password, role, phone, address } = req.body;
+    const users = await prisma.user.findMany({ where: { role: Role.ADMIN } });
+    if (users.length === 1 && users[0].id === id && role !== Role.ADMIN)
+      return res.status(400).json({ status: "fail", message: "Cannot change the role of last admin" });
     const encryptedPassword = await bcrypt.hash(password, 10);
     const updatedUser = await prisma.user.update({
       where: { id },
@@ -63,6 +66,9 @@ export async function updateUser(req: Request, res: Response) {
 export async function deleteUser(req: Request, res: Response) {
   try {
     const { id } = req.params;
+    const users = await prisma.user.findMany({ where: { role: Role.ADMIN } });
+    if (users.length === 1 && users[0].id === id)
+      return res.status(400).json({ status: "fail", message: "Cannot delete last admin" });
     await prisma.user.delete({ where: { id } });
     res.status(200).json({ status: "success", message: "User was deleted successfully" });
   } catch (err) {
