@@ -33,7 +33,7 @@ export async function createUser(req: Request, res: Response) {
       return res.status(400).json({ status: "fail", message: "Please provide username and password" });
     const user = await prisma.user.findUnique({ where: { username } });
     if (user) return res.status(400).json({ status: "fail", message: "User already exists" });
-    const encryptedPassword = bcrypt.hashSync(password, 10);
+    const encryptedPassword = await bcrypt.hash(password, 10);
     const newUser = await prisma.user.create({
       data: { username, password: encryptedPassword, role: role || Role.STAFF, phone, address },
     });
@@ -48,7 +48,7 @@ export async function updateUser(req: Request, res: Response) {
   try {
     const { id } = req.params;
     const { username, password, role, phone, address } = req.body;
-    const encryptedPassword = bcrypt.hashSync(password, 10);
+    const encryptedPassword = await bcrypt.hash(password, 10);
     const updatedUser = await prisma.user.update({
       where: { id },
       data: { username, password: encryptedPassword, role: role.toUpperCase(), phone, address },
