@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 import userIcon from "../../../assets/icon-user.svg";
 import { BACKEND_URL } from "../../../constants";
-import { toast, ToastContainer } from "react-toastify";
 import type IUser from "../../../interfaces/IUser";
 import Spinner from "../../ui/spinner";
 
@@ -11,20 +11,19 @@ export default function EditStaff() {
   const location = useLocation();
   const navigate = useNavigate();
   const { id } = location.state as { id: string };
-  const formRef = useRef<HTMLFormElement>(null);
+  const [user, setUser] = useState<IUser>();
+  const [loading, setLoading] = useState(true);
   const usernameRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
   const phoneRef = useRef<HTMLInputElement>(null);
   const roleRef = useRef<HTMLSelectElement>(null);
   const addressRef = useRef<HTMLTextAreaElement>(null);
-  const [user, setUser] = useState<IUser>();
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     axios
       .get(`${BACKEND_URL}/auth`, { withCredentials: true })
       .then((res) => {
-        if (res.data.data.user.role.toLowerCase() !== "admin") navigate("manage-staff");
+        if (res.data.data.user.role.toLowerCase() !== "admin") navigate("/manage-staff");
       })
       .catch((err) => {
         if (err.response.status === 401) {
@@ -73,14 +72,13 @@ export default function EditStaff() {
           <form
             onSubmit={updateUser}
             className="p-20 shadow-[4px_4px_12px_rgba(0,0,0,0.3)] rounded-xl border border-[rgba(87,90,56,0.26)]"
-            ref={formRef}
           >
             <input
               type="text"
               placeholder="Username"
               className="w-full mb-6 p-4 border border-[rgba(87,90,56,0.26)] rounded-md placeholder-[rgba(107,61,36,0.9)]"
               ref={usernameRef}
-              value={user?.username}
+              defaultValue={user?.username}
             />
             <input
               type="text"
@@ -94,7 +92,7 @@ export default function EditStaff() {
                 placeholder="Phone"
                 className="p-4 border border-[rgba(87,90,56,0.26)] rounded-md placeholder-[rgba(107,61,36,0.9)] flex-1"
                 ref={phoneRef}
-                value={user?.phone}
+                defaultValue={user?.phone}
               />
               <div className="relative flex-1">
                 <span className="absolute right-5 top-1/2 -translate-y-1/2 rotate-90 text-[#6B3D24]">&gt;</span>
@@ -119,7 +117,7 @@ export default function EditStaff() {
               placeholder="Address"
               className="w-full mb-10 p-4 border border-[rgba(87,90,56,0.26)] rounded-md placeholder-[rgba(107,61,36,0.9)] h-32 resize-none"
               ref={addressRef}
-              value={user?.address}
+              defaultValue={user?.address}
             />
             <div className="buttons flex justify-center gap-[20%]">
               <Link

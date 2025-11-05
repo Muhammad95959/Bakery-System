@@ -1,9 +1,9 @@
+import axios from "axios";
 import { Link } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify/unstyled";
 import editIcon from "../../assets/icon-edit.svg";
 import trashIcon from "../../assets/icon-trash.svg";
-import axios from "axios";
 import { BACKEND_URL } from "../../constants";
-import { toast, ToastContainer } from "react-toastify/unstyled";
 
 export default function StaffInfo(props: {
   id: string;

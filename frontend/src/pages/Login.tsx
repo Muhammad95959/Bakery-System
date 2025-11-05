@@ -1,13 +1,13 @@
-import loginImg from "../assets/login-img.jpg";
-import bakeryLogo from "../assets/bakery-logo.png";
-import cupcakeIcon from "../assets/icon-cupcake.svg";
-import mailIcon from "../assets/icon-mail.svg";
-import lockIcon from "../assets/icon-lock.svg";
-import { BACKEND_URL } from "../constants";
 import axios from "axios";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
+import bakeryLogo from "../assets/bakery-logo.png";
+import cupcakeIcon from "../assets/icon-cupcake.svg";
+import lockIcon from "../assets/icon-lock.svg";
+import mailIcon from "../assets/icon-mail.svg";
+import loginImg from "../assets/login-img.jpg";
+import { BACKEND_URL } from "../constants";
 
 export default function Login() {
   const navigate = useNavigate();

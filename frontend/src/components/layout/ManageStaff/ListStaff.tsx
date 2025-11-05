@@ -1,13 +1,13 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 import searchIcon from "../../../assets/icon-search.svg";
 import userIcon from "../../../assets/icon-user.svg";
-import StaffInfo from "../../ui/StaffInfo";
-import { useEffect, useState } from "react";
-import type IUser from "../../../interfaces/IUser";
-import axios from "axios";
 import { BACKEND_URL } from "../../../constants";
-import { ToastContainer, toast } from "react-toastify";
+import type IUser from "../../../interfaces/IUser";
 import Spinner from "../../ui/spinner";
+import StaffInfo from "../../ui/StaffInfo";
 
 export default function ListStaff() {
   const navigate = useNavigate();

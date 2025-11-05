@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import bakeryLogo from "../../assets/bakery-logo.png";
 import customerIcon from "../../assets/icon-customer.png";
@@ -7,9 +8,8 @@ import manageStaffIcon from "../../assets/icon-manage-staff.png";
 import ordersIcon from "../../assets/icon-orders.png";
 import productsIcon from "../../assets/icon-products.png";
 import reportsIcon from "../../assets/icon-reports.png";
-import { SidebarLink } from "../ui/SidebarLink";
-import axios from "axios";
 import { BACKEND_URL } from "../../constants";
+import { SidebarLink } from "../ui/SidebarLink";
 
 export default function Sidebar() {
   const navigate = useNavigate();

@@ -1,9 +1,9 @@
-import { Link, useNavigate } from "react-router-dom";
-import userIcon from "../../../assets/icon-user.svg";
-import { useEffect, useRef, useState } from "react";
 import axios from "axios";
-import { BACKEND_URL } from "../../../constants";
+import { useEffect, useRef, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
+import userIcon from "../../../assets/icon-user.svg";
+import { BACKEND_URL } from "../../../constants";
 import Spinner from "../../ui/spinner";
 
 export default function AddStaff() {
