@@ -29,7 +29,7 @@ export default function Sidebar() {
   }
 
   return (
-    <div className="bg-[#6B3D24] flex flex-col items-center h-screen">
+    <div className="bg-[#6B3D24] flex flex-col items-center min-h-screen h-full">
       <img src={bakeryLogo} className="w-[280px] h-[280px]" />
       <ul className="flex flex-col gap-7.5 w-[60%]">
         {links.map((link) => (

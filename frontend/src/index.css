@@ -7,3 +7,13 @@ body {
 * {
   outline: none;
 }
+
+.spinner {
+  animation: show 1s 0.5s;
+}
+
+@keyframes show {
+  100% {
+    opacity: 1;
+  }
+}
