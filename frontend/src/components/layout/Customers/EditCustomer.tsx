@@ -103,7 +103,9 @@ export default function EditCustomer() {
                 to="/customer"
                 className="basis-1/4 bg-[#FBF7E6] p-4 text-[#6B3D24] font-medium text-2xl border border-[rgba(87,90,56,0.12)] rounded-xl hover:opacity-92 cursor-pointer flex justify-center items-center"
               >
-                <button type="reset">Cancel</button>
+                <button type="reset" className="cursor-pointer">
+                  Cancel
+                </button>
               </Link>
               <button
                 type="submit"

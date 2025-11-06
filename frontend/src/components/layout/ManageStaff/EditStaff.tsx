@@ -101,9 +101,6 @@ export default function EditStaff() {
                   className="border border-[rgba(87,90,56,0.26)] p-4 rounded-md text-[rgba(107,61,36,0.9)] appearance-none w-full"
                   ref={roleRef}
                 >
-                  <option disabled selected hidden>
-                    Role
-                  </option>
                   <option selected={user?.role === "ADMIN"} className="text-[#6B3D24]">
                     Admin
                   </option>
@@ -124,7 +121,9 @@ export default function EditStaff() {
                 to="/manage-staff"
                 className="basis-1/4 bg-[#FBF7E6] p-4 text-[#6B3D24] font-medium text-2xl border border-[rgba(87,90,56,0.12)] rounded-xl hover:opacity-92 cursor-pointer flex justify-center items-center"
               >
-                <button type="reset">Cancel</button>
+                <button type="reset" className="cursor-pointer">
+                  Cancel
+                </button>
               </Link>
               <button
                 type="submit"

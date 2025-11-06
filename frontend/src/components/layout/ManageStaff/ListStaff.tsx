@@ -12,8 +12,10 @@ import StaffInfo from "../../ui/StaffInfo";
 export default function ListStaff() {
   const navigate = useNavigate();
   const [users, setUsers] = useState<IUser[]>();
+  const [filteredUsers, setFilteredUsers] = useState<IUser[]>();
   const [loading, setLoading] = useState(true);
   const [unAuthorized, setUnauthorized] = useState(false);
+  const [role, setRole] = useState("All");
 
   useEffect(() => {
     axios
@@ -34,6 +36,15 @@ export default function ListStaff() {
       })
       .catch((err) => toast.error(err.response.data.message));
   }, [navigate]);
+
+  useEffect(() => {
+    if (role === "All") setFilteredUsers(users);
+    else setFilteredUsers(users?.filter((user) => user.role === role.toUpperCase()));
+  }, [role, users]);
+
+  function handleChangeRole(e: React.ChangeEvent<HTMLSelectElement>) {
+    setRole(e.target.value);
+  }
 
   function handleDeleteUser(id: string) {
     setUsers(users?.filter((user) => user.id !== id));
@@ -63,10 +74,8 @@ export default function ListStaff() {
               <select
                 id="role"
                 className="border border-[rgba(87,90,56,0.26)] p-4 rounded-md text-[#6B3D24] appearance-none w-full"
+                onChange={handleChangeRole}
               >
-                <option disabled selected hidden>
-                  Role
-                </option>
                 <option className="text-[#6B3D24]">All</option>
                 <option className="text-[#6B3D24]">Admin</option>
                 <option className="text-[#6B3D24]">Staff</option>
@@ -89,7 +98,7 @@ export default function ListStaff() {
               <p className="flex-1/5 text-center">Status</p>
               <p className="flex-1/5 text-center">Action</p>
             </div>
-            {users?.map((user: IUser, index: number) => (
+            {filteredUsers?.map((user: IUser, index: number) => (
               <StaffInfo
                 key={index}
                 id={user.id}
