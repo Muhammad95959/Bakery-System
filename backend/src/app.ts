@@ -19,5 +19,6 @@ app.use("/api/customers", customerRouter);
 app.use("/api/orders", ordersRouter);
 app.use("/api/products", productsRouter);
 app.use("/api/users", usersRouter);
+app.use("/images", express.static("uploads"));
 
 export default app;

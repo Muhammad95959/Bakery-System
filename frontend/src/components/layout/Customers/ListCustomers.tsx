@@ -72,7 +72,7 @@ export default function ListCustomers() {
               <p className="flex-1/5 text-center">Address</p>
               <p className="flex-1/5 text-center">Action</p>
             </div>
-            {customers?.map((customer, index) => (
+            {[...(customers || [])].reverse().map((customer, index) => (
               <CustomerInfo
                 key={index}
                 id={customer.id}

@@ -44,7 +44,7 @@ export default function Sidebar() {
       </ul>
       <button
         onClick={logout}
-        className="flex gap-1 justify-center mt-20 items-center bg-[#FF7C00] p-1.5 rounded-[10px] w-[60%] cursor-pointer hover:opacity-90"
+        className="flex gap-1 justify-center mt-20 mb-10 items-center bg-[#FF7C00] p-1.5 rounded-[10px] w-[60%] cursor-pointer hover:opacity-90"
       >
         <p className="text-[24px] text-[#F7E9B2]">Logout</p>
         <div className="w-9 flex justify-center">

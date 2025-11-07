@@ -1,102 +1,192 @@
-import userIcon from "../../../assets/icon-user.svg";
+import axios from "axios";
+import { useEffect, useRef, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 import imageIcon from "../../../assets/icon-image.svg";
-import { Link } from "react-router-dom";
+import trashIcon from "../../../assets/icon-trash.svg";
+import userIcon from "../../../assets/icon-user.svg";
+import { BACKEND_URL, productCategories } from "../../../constants";
+import type IProduct from "../../../interfaces/IProduct";
+import Spinner from "../../ui/spinner";
 
 export default function EditProduct() {
-  const productsCategories = [
-    "Bread",
-    "Cupcake",
-    "Croissant",
-    "Donut",
-    "Muffin",
-    "Cookie",
-    "Tart",
-    "Brownie",
-    "Pie",
-    "Macaron",
-    "Eclair",
-    "Bagel",
-    "Scone",
-    "Danish",
-    "Cinnamon Roll",
-    "Baguette",
-    "Cheesecake",
-    "Fruit Tart",
-    "Madeleine",
-    "Pretzel",
-  ];
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { id } = location.state as { id: string };
+  const [product, setProduct] = useState<IProduct>();
+  const [loading, setLoading] = useState(true);
+  const [imageUrl, setImageUrl] = useState("");
+  const [imageFile, setImageFile] = useState<File>();
+  const [removeImage, setRemoveImage] = useState(false);
+  const imageRef = useRef<HTMLInputElement>(null);
+  const nameRef = useRef<HTMLInputElement>(null);
+  const categoryRef = useRef<HTMLSelectElement>(null);
+  const priceRef = useRef<HTMLInputElement>(null);
+  const stockRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    axios
+      .get(`${BACKEND_URL}/auth`, { withCredentials: true })
+      .then((res) => {
+        if (res.data.data.user.role.toLowerCase() !== "admin") navigate("/products");
+      })
+      .catch((err) => {
+        if (err.response.status === 401) {
+          alert("Please login again");
+          axios.get(`${BACKEND_URL}/auth/logout`, { withCredentials: true });
+          navigate("/login");
+        }
+      });
+    axios
+      .get(`${BACKEND_URL}/products/${id}`, { withCredentials: true })
+      .then((res) => {
+        setProduct(res.data.data.product);
+        if (res.data.data.product.image)
+          setImageUrl(`${BACKEND_URL.replace("/api", "/images")}/${res.data.data.product.image}`);
+        else setImageUrl("");
+        setLoading(false);
+      })
+      .catch((err) => {
+        if (err.response.status === 401) {
+          alert("Please login again");
+          axios.get(`${BACKEND_URL}/auth/logout`, { withCredentials: true });
+          navigate("/login");
+        }
+      });
+  }, [id, navigate]);
+
+  function updateProduct(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const formData = new FormData();
+    if (imageFile) formData.append("image", imageFile);
+    if (nameRef.current?.value) formData.append("name", nameRef.current.value);
+    if (categoryRef.current?.value) formData.append("category", categoryRef.current.value);
+    if (priceRef.current?.value) formData.append("price", priceRef.current.value);
+    if (stockRef.current?.value) formData.append("stock", stockRef.current.value);
+    axios
+      .put(`${BACKEND_URL}/products/${id}?removeImage=${removeImage}`, formData, { withCredentials: true })
+      .then(() => navigate("/products"))
+      .catch((err) => toast.error(err.response.data.message));
+  }
+
+  function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const imgUrl = URL.createObjectURL(file);
+    setImageUrl(imgUrl);
+    setImageFile(file);
+    setRemoveImage(false);
+  }
+
+  function handleRemovingImage() {
+    setImageUrl("");
+    setImageFile(undefined);
+    setRemoveImage(true);
+  }
 
   return (
-    <div className="p-20 basis-[80%]">
-      <div className="flex justify-between items-center mb-20">
-        <h1 className="text-[48px] font-semibold">Edit Product</h1>
-        <div className="image bg-[#FFF8E2] p-4 rounded-[50%]">
-          <img src={userIcon} />
-        </div>
-      </div>
-      <form>
-        <div className="flex gap-20 justify-between items-start">
-          <label className="flex flex-col items-center gap-4 h-auto hover:opacity-85">
-            <input hidden type="file" />
-            <div className="w-72 h-72 bg-[#FFFDF2] rounded-2xl flex gap-8 flex-col justify-center items-center border-3 border-[#FBEFD1] cursor-pointer">
-              <img src={imageIcon} />
-              <p className="text-2xl font-semibold text-[#6B3D24]">Upload Image</p>
+    <>
+      {(loading && <Spinner />) || (
+        <div className="p-20 basis-[80%]">
+          <div className="flex justify-between items-center mb-20">
+            <h1 className="text-[48px] font-semibold">Edit Product</h1>
+            <div className="image bg-[#FFF8E2] p-4 rounded-[50%]">
+              <img src={userIcon} />
             </div>
-          </label>
-          <div className="flex-1">
-            <label className="mb-5">
-              <p className="text-2xl font-semibold text-[#6B3D24] ml-3 mb-2">Name</p>
-              <input
-                type="text"
-                className="w-full mb-6 p-4 bg-[#FFFDF2] border-3 border-[#FBEFD1] rounded-2xl placeholder-[rgba(107,61,36,0.9)] caret-[rgba(87,90,56,0.52)]"
-              />
-            </label>
-            <label className="mb-5">
-              <p className="text-2xl font-semibold text-[#6B3D24] ml-3 mb-2">Category</p>
-              <div className="relative w-full mb-6 bg-[#FFFDF2] border-3 border-[#FBEFD1] rounded-2xl">
-                <span className="absolute right-5 top-1/2 -translate-y-1/2 rotate-90 text-[#6B3D24]">&gt;</span>
-                <select className="w-full p-4 text-[rgba(107,61,36,0.9)] appearance-none caret-[rgba(87,90,56,0.52)] z-1 relative">
-                  {productsCategories.map((category, index) => (
-                    <option key={index} className="text-[#6B3D24]">
-                      {category}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </label>
-            <label className="mb-5">
-              <p className="text-2xl font-semibold text-[#6B3D24] ml-3 mb-2">Price</p>
-              <input
-                type="text"
-                className="w-full mb-6 p-4 bg-[#FFFDF2] border-3 border-[#FBEFD1] rounded-2xl placeholder-[rgba(107,61,36,0.9)] caret-[rgba(87,90,56,0.52)]"
-              />
-            </label>
-            <label className="mb-5">
-              <p className="text-2xl font-semibold text-[#6B3D24] ml-3 mb-2">Stock</p>
-              <input
-                type="text"
-                className="w-full mb-6 p-4 bg-[#FFFDF2] border-3 border-[#FBEFD1] rounded-2xl placeholder-[rgba(107,61,36,0.9)] caret-[rgba(87,90,56,0.52)]"
-              />
-            </label>
           </div>
+          <form onSubmit={updateProduct}>
+            <div className="flex gap-20 justify-between items-start">
+              <div className="flex flex-col items-center gap-4 h-auto relative">
+                <label className="hover:opacity-85">
+                  <input hidden type="file" accept="image/*" ref={imageRef} onChange={handleFileChange} />
+                  {(imageUrl && (
+                    <img src={imageUrl} className="w-72 h-72 rounded-2xl cursor-pointer object-cover" />
+                  )) || (
+                    <div className="w-72 h-72 bg-[#FFFDF2] rounded-2xl flex gap-8 flex-col justify-center items-center border-3 border-[#FBEFD1] cursor-pointer">
+                      <img src={imageIcon} />
+                      <p className="text-2xl font-semibold text-[#6B3D24]">Upload Image</p>
+                    </div>
+                  )}
+                </label>
+                <div
+                  className="absolute bottom-4 right-4 rounded-full border-2 border-[#6B3D24] w-10 h-10 flex justify-center items-center z-1 hover:bg-[#FBEBC4] cursor-pointer"
+                  onClick={handleRemovingImage}
+                  tabIndex={0}
+                >
+                  <img
+                    src={trashIcon}
+                    className="w-4 h-4 filter-[brightness(0)saturate(100%)invert(23%)sepia(77%)saturate(404%)hue-rotate(337deg)brightness(94%)contrast(94%)]"
+                  />
+                </div>
+              </div>
+              <div className="flex-1">
+                <label className="mb-5">
+                  <p className="text-2xl font-semibold text-[#6B3D24] ml-3 mb-2">Name</p>
+                  <input
+                    required
+                    type="text"
+                    className="w-full mb-6 p-4 bg-[#FFFDF2] border-3 border-[#FBEFD1] rounded-2xl placeholder-[rgba(107,61,36,0.9)] caret-[rgba(87,90,56,0.52)]"
+                    ref={nameRef}
+                    defaultValue={product?.name}
+                  />
+                </label>
+                <label className="mb-5">
+                  <p className="text-2xl font-semibold text-[#6B3D24] ml-3 mb-2">Category</p>
+                  <div className="relative w-full mb-6 bg-[#FFFDF2] border-3 border-[#FBEFD1] rounded-2xl">
+                    <span className="absolute right-5 top-1/2 -translate-y-1/2 rotate-90 text-[#6B3D24]">&gt;</span>
+                    <select
+                      className="w-full p-4 text-[rgba(107,61,36,0.9)] appearance-none caret-[rgba(87,90,56,0.52)] z-1 relative"
+                      ref={categoryRef}
+                      defaultValue={product?.category}
+                    >
+                      {productCategories.map((category, index) => (
+                        <option key={index} className="text-[#6B3D24]">
+                          {category}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </label>
+                <label className="mb-5">
+                  <p className="text-2xl font-semibold text-[#6B3D24] ml-3 mb-2">Price</p>
+                  <input
+                    type="text"
+                    className="w-full mb-6 p-4 bg-[#FFFDF2] border-3 border-[#FBEFD1] rounded-2xl placeholder-[rgba(107,61,36,0.9)] caret-[rgba(87,90,56,0.52)]"
+                    ref={priceRef}
+                    defaultValue={product?.price}
+                  />
+                </label>
+                <label className="mb-5">
+                  <p className="text-2xl font-semibold text-[#6B3D24] ml-3 mb-2">Stock</p>
+                  <input
+                    type="text"
+                    className="w-full mb-6 p-4 bg-[#FFFDF2] border-3 border-[#FBEFD1] rounded-2xl placeholder-[rgba(107,61,36,0.9)] caret-[rgba(87,90,56,0.52)]"
+                    ref={stockRef}
+                    defaultValue={product?.stock}
+                  />
+                </label>
+              </div>
+            </div>
+            <div className="flex justify-end mt-6">
+              <button
+                type="submit"
+                className="bg-[#FFAC3E] p-4 text-white font-medium text-2xl rounded-xl hover:opacity-92 w-48 cursor-pointer"
+              >
+                Update
+              </button>
+              <Link to="/products">
+                <button
+                  type="reset"
+                  className="bg-[#FBF7E6] p-4 text-[#6B3D24] font-medium text-2xl border border-[rgba(87,90,56,0.12)] rounded-xl hover:opacity-92 w-48 ml-6 cursor-pointer"
+                >
+                  Cancel
+                </button>
+              </Link>
+            </div>
+          </form>
+          <ToastContainer position="bottom-center" autoClose={3000} />
         </div>
-        <div className="flex justify-end mt-6">
-          <button
-            type="button"
-            className="bg-[#FFAC3E] p-4 text-white font-medium text-2xl rounded-xl hover:opacity-92 w-48 cursor-pointer"
-          >
-            Update
-          </button>
-          <Link to="/products">
-          <button
-            type="button"
-            className="bg-[#FBF7E6] p-4 text-[#6B3D24] font-medium text-2xl border border-[rgba(87,90,56,0.12)] rounded-xl hover:opacity-92 w-48 ml-6 cursor-pointer"
-          >
-            Cancel
-          </button>
-          </Link>
-        </div>
-      </form>
-    </div>
+      )}
+    </>
   );
 }

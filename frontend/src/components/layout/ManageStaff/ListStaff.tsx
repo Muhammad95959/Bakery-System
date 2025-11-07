@@ -98,7 +98,7 @@ export default function ListStaff() {
               <p className="flex-1/5 text-center">Status</p>
               <p className="flex-1/5 text-center">Action</p>
             </div>
-            {filteredUsers?.map((user: IUser, index: number) => (
+            {[...(filteredUsers || [])].reverse().map((user: IUser, index: number) => (
               <StaffInfo
                 key={index}
                 id={user.id}
