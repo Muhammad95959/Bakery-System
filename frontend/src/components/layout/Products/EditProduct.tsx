@@ -109,7 +109,8 @@ export default function EditProduct() {
                   )}
                 </label>
                 <div
-                  className="absolute bottom-4 right-4 rounded-full border-2 border-[#6B3D24] w-10 h-10 flex justify-center items-center z-1 hover:bg-[#FBEBC4] cursor-pointer"
+                  className="absolute bottom-4 right-4 rounded-full border-2 border-[#6B3D24] w-10 h-10 flex justify-center items-center z-1 bg-[#FFFFF6] hover:bg-[#FBEBC4] cursor-pointer"
+                  style={{ display: imageUrl ? "flex" : "none" }}
                   onClick={handleRemovingImage}
                   tabIndex={0}
                 >
