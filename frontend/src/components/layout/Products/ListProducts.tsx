@@ -14,6 +14,7 @@ export default function ListProducts() {
   const navigate = useNavigate();
   const [products, setProducts] = useState<IProduct[]>();
   const [filteredProducts, setFilteredProducts] = useState<IProduct[]>();
+  const [searchedProducts, setSearchedProducts] = useState<IProduct[]>();
   const [loading, setLoading] = useState(true);
   const [unAuthorized, setUnAuthorized] = useState(false);
   const [category, setCategory] = useState("All");
@@ -43,6 +44,20 @@ export default function ListProducts() {
     else setFilteredProducts(products?.filter((product) => product.category === category));
   }, [products, category]);
 
+  function handleSearch(e: React.ChangeEvent<HTMLInputElement>) {
+    const search = e.target.value;
+    if (search === "") setSearchedProducts(undefined);
+    else
+      setSearchedProducts(
+        filteredProducts?.filter(
+          (product) =>
+            product.name.toLowerCase().includes(search.toLowerCase()) ||
+            product.price.toString().includes(search) ||
+            product.stock.toString().includes(search),
+        ),
+      );
+  }
+
   function handleChangeProduct(e: React.ChangeEvent<HTMLSelectElement>) {
     setCategory(e.target.value);
   }
@@ -67,6 +82,7 @@ export default function ListProducts() {
                 type="text"
                 placeholder="Search Products"
                 className="pl-14 placeholder-[rgba(107,61,36,0.9)] caret-[rgba(87,90,56,0.52)] w-full"
+                onChange={handleSearch}
               />
               <img src={searchIcon} className="absolute top-1/2 left-6 -translate-y-1/2 -z-1" />
             </div>
@@ -104,7 +120,7 @@ export default function ListProducts() {
               <p className="flex-1/6 text-center">Category</p>
               <p className="flex-1/6 text-center">Action</p>
             </div>
-            {[...(filteredProducts || [])].reverse().map((product, index) => (
+            {[...(searchedProducts || filteredProducts || [])].reverse().map((product, index) => (
               <ProductInfo
                 key={index}
                 id={product.id}

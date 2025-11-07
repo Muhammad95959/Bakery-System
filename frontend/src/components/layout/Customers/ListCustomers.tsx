@@ -12,6 +12,7 @@ import Spinner from "../../ui/spinner";
 export default function ListCustomers() {
   const navigate = useNavigate();
   const [customers, setCustomers] = useState<ICustomer[]>();
+  const [searchedCustomers, setSearchedCustomers] = useState<ICustomer[]>();
   const [loading, setLoading] = useState(true);
   const [unAuthorized, setUnauthorized] = useState(false);
 
@@ -30,10 +31,26 @@ export default function ListCustomers() {
       .get(`${BACKEND_URL}/customers`, { withCredentials: true })
       .then((res) => {
         setCustomers(res.data.data.customers);
+        setSearchedCustomers(res.data.data.customers);
         setLoading(false);
       })
       .catch((err) => toast.error(err.response.data.message));
   }, [navigate]);
+
+  function handleSearch(e: React.ChangeEvent<HTMLInputElement>) {
+    const search = e.target.value;
+    if (search === "") setSearchedCustomers(customers);
+    else
+      setSearchedCustomers(
+        customers?.filter(
+          (customer) =>
+            customer.name.toLowerCase().includes(search.toLowerCase()) ||
+            customer.email?.toLowerCase().includes(search.toLowerCase()) ||
+            customer.phone?.includes(search) ||
+            customer.address?.toLowerCase().includes(search.toLowerCase()),
+        ),
+      );
+  }
 
   function handleDeleteCustomer(id: string) {
     setCustomers((customers) => customers?.filter((customer) => customer.id !== id));
@@ -55,6 +72,7 @@ export default function ListCustomers() {
                 type="text"
                 placeholder="Search Customer"
                 className="pl-14 placeholder-[rgba(107,61,36,0.9)] caret-[rgba(87,90,56,0.52)] w-full"
+                onChange={handleSearch}
               />
               <img src={searchIcon} className="absolute top-1/2 left-6 -translate-y-1/2 -z-1" />
             </div>
@@ -72,7 +90,7 @@ export default function ListCustomers() {
               <p className="flex-1/5 text-center">Address</p>
               <p className="flex-1/5 text-center">Action</p>
             </div>
-            {[...(customers || [])].reverse().map((customer, index) => (
+            {[...(searchedCustomers || [])].reverse().map((customer, index) => (
               <CustomerInfo
                 key={index}
                 id={customer.id}

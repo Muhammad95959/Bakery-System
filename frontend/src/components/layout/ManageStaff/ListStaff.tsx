@@ -13,6 +13,7 @@ export default function ListStaff() {
   const navigate = useNavigate();
   const [users, setUsers] = useState<IUser[]>();
   const [filteredUsers, setFilteredUsers] = useState<IUser[]>();
+  const [searchedUsers, setSearchedUsers] = useState<IUser[]>();
   const [loading, setLoading] = useState(true);
   const [unAuthorized, setUnauthorized] = useState(false);
   const [role, setRole] = useState("All");
@@ -42,6 +43,17 @@ export default function ListStaff() {
     else setFilteredUsers(users?.filter((user) => user.role === role.toUpperCase()));
   }, [role, users]);
 
+  function handleSearch(e: React.ChangeEvent<HTMLInputElement>) {
+    const search = e.target.value;
+    if (search === "") setSearchedUsers(undefined);
+    else
+      setSearchedUsers(
+        filteredUsers?.filter(
+          (user) => user.username.toLowerCase().includes(search.toLowerCase()) || user.phone?.includes(search),
+        ),
+      );
+  }
+
   function handleChangeRole(e: React.ChangeEvent<HTMLSelectElement>) {
     setRole(e.target.value);
   }
@@ -66,6 +78,7 @@ export default function ListStaff() {
                 type="text"
                 placeholder="Search Staff"
                 className="pl-14 placeholder-[rgba(107,61,36,0.9)] caret-[rgba(87,90,56,0.52)] w-full"
+                onChange={handleSearch}
               />
               <img src={searchIcon} className="absolute top-1/2 left-6 -translate-y-1/2 -z-1" />
             </div>
@@ -98,7 +111,7 @@ export default function ListStaff() {
               <p className="flex-1/5 text-center">Status</p>
               <p className="flex-1/5 text-center">Action</p>
             </div>
-            {[...(filteredUsers || [])].reverse().map((user: IUser, index: number) => (
+            {[...(searchedUsers || filteredUsers || [])].reverse().map((user: IUser, index: number) => (
               <StaffInfo
                 key={index}
                 id={user.id}
