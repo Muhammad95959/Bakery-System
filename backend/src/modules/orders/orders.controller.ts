@@ -5,7 +5,13 @@ import { OrderStatus, PaymentMethod } from "../../generated/prisma/enums";
 export async function getAllOrders(_req: Request, res: Response) {
   try {
     const orders = await prisma.order.findMany();
-    res.status(200).json({ status: "success", data: { orders } });
+    const ordersWithItems = await Promise.all(
+      orders.map(async (order) => {
+        const cart = await prisma.cart.findMany({ where: { orderId: order.id } });
+        return { ...order, cart };
+      }),
+    );
+    res.status(200).json({ status: "success", data: { orders: ordersWithItems } });
   } catch (err) {
     console.log(err);
     res.status(500).json({ status: "fail", message: "Something went wrong" });
@@ -17,7 +23,8 @@ export async function getOrderById(req: Request, res: Response) {
     const { id } = req.params;
     const order = await prisma.order.findUnique({ where: { id: parseInt(id) } });
     if (!order) return res.status(404).json({ status: "fail", message: "Order was not found" });
-    res.status(200).json({ status: "success", data: { order } });
+    const cart = await prisma.cart.findMany({ where: { orderId: order.id } });
+    res.status(200).json({ status: "success", data: { order: { ...order, cart } } });
   } catch (err) {
     console.log(err);
     res.status(500).json({ status: "fail", message: "Something went wrong" });
@@ -66,7 +73,11 @@ export async function placeOrder(req: Request, res: Response) {
     });
   } catch (err) {
     console.log(err);
-    res.status(500).json({ status: "fail", message: "Something went wrong" });
+    if ((err as Error).message.includes("was not found"))
+      return res.status(404).json({ status: "fail", message: (err as Error).message });
+    else if ((err as Error).message.includes("is out of stock"))
+      return res.status(400).json({ status: "fail", message: (err as Error).message });
+    else res.status(500).json({ status: "fail", message: "Something went wrong" });
   }
 }
 
@@ -75,14 +86,14 @@ export async function undoOrder(req: Request, res: Response) {
     const { id } = req.params;
     const oldOrder = await prisma.order.findUnique({ where: { id: parseInt(id) } });
     if (!oldOrder) return res.status(404).json({ status: "fail", message: "Order was not found" });
-    if (oldOrder.status === OrderStatus.CANCELLED)
-      return res.status(400).json({ status: "fail", message: "Order is already cancelled" });
+    if (oldOrder.status === OrderStatus.CANCELED)
+      return res.status(400).json({ status: "fail", message: "Order is already canceled" });
     const [newOrder, orderItems] = await prisma.$transaction(async (tx) => {
       const orderItems = await tx.orderItem.findMany({
         where: { orderId: oldOrder.id },
         select: { productId: true, quantity: true },
       });
-      const productIds = orderItems.map((item) => item.productId);
+      const productIds = orderItems.map((item) => item.productId).filter((id) => id !== null);
       const products = await tx.product.findMany({
         where: { id: { in: productIds } },
         select: { id: true, stock: true },
@@ -98,18 +109,20 @@ export async function undoOrder(req: Request, res: Response) {
       const newOrder = await tx.order.update({
         where: { id: oldOrder.id },
         data: {
-          status: OrderStatus.CANCELLED,
+          status: OrderStatus.CANCELED,
         },
       });
       return [newOrder, orderItems];
     });
     res.status(200).json({
       status: "success",
-      message: "Order was cancelled successfully",
+      message: "Order was canceled successfully",
       data: { order: newOrder, items: orderItems },
     });
   } catch (err) {
     console.log(err);
-    res.status(500).json({ status: "fail", message: "Something went wrong" });
+    if ((err as Error).message.includes("was not found"))
+      return res.status(404).json({ status: "fail", message: (err as Error).message });
+    else res.status(500).json({ status: "fail", message: "Something went wrong" });
   }
 }
