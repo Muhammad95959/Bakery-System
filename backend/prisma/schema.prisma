@@ -1,6 +1,7 @@
 generator client {
-  provider = "prisma-client"
-  output   = "../src/generated/prisma"
+  provider        = "prisma-client"
+  output          = "../src/generated/prisma"
+  previewFeatures = ["views"]
 }
 
 datasource db {
@@ -18,8 +19,7 @@ model User {
   status    UserStatus @default(ACTIVE)
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
-
-  Order Order[]
+  Order     Order[]
 
   @@map("users")
 }
@@ -37,15 +37,14 @@ model Customer {
 }
 
 model Product {
-  id        Int      @id @default(autoincrement())
+  id        Int         @id @default(autoincrement())
   name      String
   category  String
-  price     Decimal  @db.Decimal(8, 2)
-  stock     Decimal  @db.Decimal(8, 2)
+  price     Decimal     @db.Decimal(8, 2)
+  stock     Decimal     @db.Decimal(8, 2)
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
   image     String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
   OrderItem OrderItem[]
 
   @@map("products")
@@ -53,30 +52,38 @@ model Product {
 
 model Order {
   id            Int           @id @default(autoincrement())
-  user          User?         @relation(fields: [userId], references: [id], onDelete: SetNull)
   userId        String?
-  customer      String        @default("Customer")
   status        OrderStatus   @default(PENDING)
   paymentMethod PaymentMethod @default(CASH)
   total         Decimal       @default(0) @db.Decimal(8, 2)
   createdAt     DateTime      @default(now())
-
-  OrderItem OrderItem[]
+  customer      String        @default("Customer")
+  OrderItem     OrderItem[]
+  user          User?         @relation(fields: [userId], references: [id])
 
   @@map("orders")
 }
 
 model OrderItem {
   id        Int      @id @default(autoincrement())
-  product   Product? @relation(fields: [productId], references: [id], onDelete: SetNull)
   productId Int?
-  order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
-  orderId   Int
   quantity  Int
   createdAt DateTime @default(now())
+  orderId   Int
+  order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product   Product? @relation(fields: [productId], references: [id])
 
   @@unique([productId, orderId])
   @@map("order_items")
+}
+
+view Cart {
+  orderId  Int
+  name     String
+  price    Decimal @db.Decimal(8, 2)
+  quantity Int
+
+  @@map("cart_view")
 }
 
 enum Role {
@@ -92,7 +99,7 @@ enum UserStatus {
 enum OrderStatus {
   PENDING
   COMPLETED
-  CANCELLED
+  CANCELED
 }
 
 enum PaymentMethod {
