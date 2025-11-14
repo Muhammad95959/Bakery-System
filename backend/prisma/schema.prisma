@@ -82,6 +82,7 @@ view Cart {
   name     String
   price    Decimal @db.Decimal(8, 2)
   quantity Int
+  image    String?
 
   @@map("cart_view")
 }
