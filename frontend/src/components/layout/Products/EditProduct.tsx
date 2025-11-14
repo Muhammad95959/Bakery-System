@@ -32,6 +32,7 @@ export default function EditProduct() {
       })
       .catch((err) => {
         if (err.response.status === 401) {
+          setLoading(false);
           alert("Please login again");
           axios.get(`${BACKEND_URL}/auth/logout`, { withCredentials: true });
           navigate("/login");

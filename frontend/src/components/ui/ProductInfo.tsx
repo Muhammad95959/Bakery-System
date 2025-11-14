@@ -8,7 +8,7 @@ export default function ProductInfo(props: {
   image?: string;
   id: number;
   name: string;
-  price: number;
+  price: string;
   stock: number;
   category: string;
   unAuthorized: boolean;

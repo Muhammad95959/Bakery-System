@@ -14,6 +14,7 @@ export default function ListProducts() {
   const navigate = useNavigate();
   const [products, setProducts] = useState<IProduct[]>();
   const [filteredProducts, setFilteredProducts] = useState<IProduct[]>();
+  const [search, setSearch] = useState("");
   const [searchedProducts, setSearchedProducts] = useState<IProduct[]>();
   const [loading, setLoading] = useState(true);
   const [unAuthorized, setUnAuthorized] = useState(false);
@@ -44,9 +45,8 @@ export default function ListProducts() {
     else setFilteredProducts(products?.filter((product) => product.category === category));
   }, [products, category]);
 
-  function handleSearch(e: React.ChangeEvent<HTMLInputElement>) {
-    const search = e.target.value;
-    if (search === "") setSearchedProducts(undefined);
+  useEffect(() => {
+    if (search === "") setSearchedProducts(filteredProducts);
     else
       setSearchedProducts(
         filteredProducts?.filter(
@@ -56,6 +56,10 @@ export default function ListProducts() {
             product.stock.toString().includes(search),
         ),
       );
+  }, [filteredProducts, search]);
+
+  function handleSearch(e: React.ChangeEvent<HTMLInputElement>) {
+    setSearch(e.target.value);
   }
 
   function handleChangeProduct(e: React.ChangeEvent<HTMLSelectElement>) {
@@ -120,13 +124,13 @@ export default function ListProducts() {
               <p className="flex-1/6 text-center">Category</p>
               <p className="flex-1/6 text-center">Action</p>
             </div>
-            {[...(searchedProducts || filteredProducts || [])].reverse().map((product, index) => (
+            {[...(searchedProducts || [])].reverse().map((product, index) => (
               <ProductInfo
                 key={index}
                 id={product.id}
                 image={product.image}
                 name={product.name}
-                price={product.price}
+                price={`$${product.price}`}
                 stock={product.stock}
                 category={product.category}
                 unAuthorized={unAuthorized}

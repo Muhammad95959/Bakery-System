@@ -48,6 +48,8 @@ export default function AddProduct() {
       .post(`${BACKEND_URL}/products`, formData, { withCredentials: true })
       .then(() => {
         formRef.current?.reset();
+        setImageUrl("");
+        setImageFile(undefined);
         toast.success("Product was added successfully");
       })
       .catch((err) => toast.error(err.response.data.message));
