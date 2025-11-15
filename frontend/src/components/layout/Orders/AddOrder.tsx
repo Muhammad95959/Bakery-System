@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
+import genericImage from "../../../assets/icon-generic-image.svg";
 import searchIcon from "../../../assets/icon-search.svg";
 import userIcon from "../../../assets/icon-user.svg";
 import { BACKEND_URL, paymentMethods } from "../../../constants";
@@ -14,6 +15,8 @@ export default function AddOrder() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState<IProduct[]>([]);
+  const [search, setSearch] = useState("");
+  const [searchedProducts, setSearchedProducts] = useState<IProduct[]>([]);
   interface CartWithId extends ICart {
     id: number;
   }
@@ -49,6 +52,15 @@ export default function AddOrder() {
   useEffect(() => {
     setTotal(cart.reduce((acc, item) => acc + item.price * item.quantity, 0));
   }, [cart]);
+
+  useEffect(() => {
+    if (search === "") setSearchedProducts(products);
+    else setSearchedProducts(products.filter((product) => product.name.toLowerCase().includes(search.toLowerCase())));
+  }, [products, search]);
+
+  function handleSearch(e: React.ChangeEvent<HTMLInputElement>) {
+    setSearch(e.target.value);
+  }
 
   function addProductToCart(e: React.MouseEvent<HTMLDivElement, MouseEvent>, product: IProduct) {
     e.preventDefault();
@@ -110,19 +122,20 @@ export default function AddOrder() {
               <img src={userIcon} />
             </div>
           </div>
-          <div className="flex overflow-hidden gap-6 select-none">
+          <div className="flex overflow-hidden gap-6 select-none flex-1">
             {/* left side */}
             <div className="flex flex-col gap-6 basis-1/3">
-              <div className="p-4 relative border border-[rgba(87,90,56,0.26)] rounded-md">
+              <div className="p-4 relative border-2 border-[rgba(87,90,56,0.26)] rounded-md">
                 <input
                   type="text"
                   placeholder="Search Product"
                   className="pl-14 placeholder-[rgba(107,61,36,0.9)] caret-[rgba(87,90,56,0.52)] w-full"
+                  onChange={handleSearch}
                 />
                 <img src={searchIcon} className="absolute top-1/2 left-6 -translate-y-1/2" />
               </div>
-              <div className="rounded-xl border-2 border-[rgba(87,90,56,0.26)] overflow-y-auto p-4 flex flex-col gap-4">
-                {products.map((product, index) => (
+              <div className="rounded-xl border-2 border-[rgba(87,90,56,0.26)] overflow-y-auto p-4 flex flex-col gap-4 flex-1">
+                {searchedProducts.map((product, index) => (
                   <div
                     key={index}
                     tabIndex={0}
@@ -130,7 +143,7 @@ export default function AddOrder() {
                     onClick={(e) => addProductToCart(e, product)}
                   >
                     <img
-                      src={`${BACKEND_URL.replace("/api", "/images")}/${product.image}`}
+                      src={`${(product.image && BACKEND_URL.replace("/api", "/images/") + product.image) || genericImage}`}
                       className="w-9 h-9 object-cover rounded-md"
                     />
                     <div>
@@ -143,7 +156,7 @@ export default function AddOrder() {
             </div>
             {/* right side */}
             <div className="flex flex-col gap-6 basis-2/3">
-              <div className="rounded-xl border-2 border-[rgba(87,90,56,0.26)] overflow-y-auto p-4 flex flex-col gap-4">
+              <div className="rounded-xl border-2 border-[rgba(87,90,56,0.26)] overflow-y-auto p-4 flex flex-col gap-4 flex-1">
                 <p className="text-2xl font-semibold">Cart Summary</p>
                 {cart.map((product, index) => (
                   <div
@@ -152,7 +165,7 @@ export default function AddOrder() {
                   >
                     <div className="flex gap-4 items-center">
                       <img
-                        src={`${BACKEND_URL.replace("/api", "/images")}/${product.image}`}
+                        src={`${(product.image && BACKEND_URL.replace("/api", "/images/") + product.image) || genericImage}`}
                         className="w-9 h-9 object-cover rounded-md"
                       />
                       <div>
