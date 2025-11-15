@@ -45,6 +45,7 @@ model Product {
   createdAt DateTime    @default(now())
   updatedAt DateTime    @updatedAt
   image     String?
+  deleted   Boolean     @default(false)
   OrderItem OrderItem[]
 
   @@map("products")
