@@ -3,12 +3,19 @@ import { promises as fs } from "fs";
 import multer from "multer";
 import path from "path";
 import prisma from "../../config/db";
+import SharpMulter from "sharp-multer";
 import { Product } from "../../generated/prisma/browser";
 
-const storage = multer.diskStorage({
-  destination: "uploads",
-  filename: (_req, file, callback) => {
-    return callback(null, `${Date.now()}-${file.originalname}`);
+const storage = SharpMulter({
+  destination: (_req: any, _file: any, callback: (arg0: null, arg1: string) => any) => callback(null, "uploads"),
+  filename: (originalName: string, options: { fileFormat: any }) => {
+    const name = originalName.split(".")[0];
+    return `${Date.now()}-${name}.${options.fileFormat}`;
+  },
+  imageOptions: {
+    fileFormat: "jpg",
+    quality: 80,
+    resize: { width: 288, height: 288 },
   },
 });
 
@@ -16,7 +23,7 @@ export const upload = multer({ storage });
 
 export async function getAllProducts(_req: Request, res: Response) {
   try {
-    const products = await prisma.product.findMany();
+    const products = await prisma.product.findMany({ where: { deleted: false } });
     res.status(200).json({ status: "success", data: { products } });
   } catch (err) {
     console.log(err);
@@ -86,8 +93,7 @@ export async function deleteProduct(req: Request, res: Response) {
     const { id } = req.params;
     const oldProduct = await prisma.product.findUnique({ where: { id: parseInt(id) } });
     if (!oldProduct) return res.status(404).json({ status: "fail", message: "Product was not found" });
-    await deleteProductImage(oldProduct);
-    await prisma.product.delete({ where: { id: parseInt(id) } });
+    await prisma.product.update({ where: { id: parseInt(id) }, data: { deleted: true } });
     res.status(200).json({ status: "success", message: "Product was deleted successfully" });
   } catch (err) {
     console.log(err);
