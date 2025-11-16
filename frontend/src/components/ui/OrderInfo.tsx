@@ -13,10 +13,7 @@ export default function OrderInfo(props: {
 }) {
   let statusColor = "";
   switch (props.status.toLowerCase()) {
-    case "pending":
-      statusColor = "#FFF7D5";
-      break;
-    case "delivered":
+    case "paid":
       statusColor = "#ECF8E5";
       break;
     default:
@@ -24,10 +21,7 @@ export default function OrderInfo(props: {
   }
   let statusTextColor = "";
   switch (props.status.toLowerCase()) {
-    case "pending":
-      statusTextColor = "#C75201";
-      break;
-    case "delivered":
+    case "paid":
       statusTextColor = "#003702";
       break;
     default:

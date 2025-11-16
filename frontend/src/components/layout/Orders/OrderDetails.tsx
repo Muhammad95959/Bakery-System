@@ -25,10 +25,7 @@ export default function OrderDetails() {
 
   let statusColor = "";
   switch (status.toLowerCase()) {
-    case "pending":
-      statusColor = "#FFF7D5";
-      break;
-    case "delivered":
+    case "paid":
       statusColor = "#ECF8E5";
       break;
     default:
@@ -36,10 +33,7 @@ export default function OrderDetails() {
   }
   let statusTextColor = "";
   switch (status.toLowerCase()) {
-    case "pending":
-      statusTextColor = "#C75201";
-      break;
-    case "delivered":
+    case "paid":
       statusTextColor = "#003702";
       break;
     default:
