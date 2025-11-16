@@ -39,10 +39,6 @@ export default function DashboardContent() {
           .then((res) => setOrdersToday(res.data.data.count))
           .catch((err) => toast.error(err.response.data.message));
         axios
-          .get(`${BACKEND_URL}/analytics/revenue-today`, { withCredentials: true })
-          .then((res) => setRevenueToday(res.data.data.revenue))
-          .catch((err) => toast.error(err.response.data.message));
-        axios
           .get(`${BACKEND_URL}/analytics/top-product`, { withCredentials: true })
           .then((res) => setTopProduct(res.data.data.name))
           .catch((err) => toast.error(err.response.data.message));
@@ -52,7 +48,10 @@ export default function DashboardContent() {
           .catch((err) => toast.error(err.response.data.message));
         axios
           .get(`${BACKEND_URL}/analytics/week-revenue`, { withCredentials: true })
-          .then((res) => setRevenueData(res.data.data))
+          .then((res) => {
+            setRevenueData(res.data.data);
+            setRevenueToday(res.data.data[6].revenue);
+          })
           .catch((err) => toast.error(err.response.data.message));
       } catch (error) {
         const err = error as AxiosError;
