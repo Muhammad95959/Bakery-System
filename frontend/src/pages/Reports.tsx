@@ -1,3 +1,4 @@
+import ReportsContent from "../components/layout/ReportsContent";
 import Sidebar from "../components/layout/Sidebar";
 
 function Reports() {
@@ -6,6 +7,7 @@ function Reports() {
       <div className="w-[20%] min-w-[380px]">
         <Sidebar />
       </div>
+      <ReportsContent />
     </div>
   );
 }
