@@ -97,9 +97,27 @@ view LowestStockProducts {
 
 view WeekRevenue {
   day     String
-  revenue Decimal @db.Decimal
+  revenue Decimal @db.Decimal(8, 2)
 
   @@map("week_revenue")
+}
+
+view OrdersToday {
+  count Int
+
+  @@map("orders_today")
+}
+
+view RevenueToday {
+  revenue Decimal? @db.Decimal(8, 2)
+
+  @@map("revenue_today")
+}
+
+view TopProduct {
+  name String
+
+  @@map("top_product")
 }
 
 enum Role {
