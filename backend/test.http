@@ -5,7 +5,7 @@
 ### authorize
 
 GET http://localhost:7373/api/auth
-Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjliZWI3Zjk1LWNmNmEtNDI4Ny1hMjVhLWRkYjU2Y2JhZjk5MyIsImlhdCI6MTc2MjE2ODcyNywiZXhwIjoxNzYyNzczNTI3fQ.jSvicKYncMx_SM6n47kaeggVAzliD7WcvG6kzACPV6Q; Max-Age=604800; Path=/; Expires=Mon, 10 Nov 2025 11:18:47 GMT; HttpOnly
+Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxOTY3YTk2LTgxNjItNDczZC04MmNjLTY1MzMzYmE2MzNkZiIsImlhdCI6MTc2MzMyNTY5MiwiZXhwIjoxNzYzOTMwNDkyfQ.gbRR57y97Y0ByIOdOT2H4ESrHXIqCBB-HDMa1cpYjxI; Path=/; HttpOnly
 
 
 ### login
@@ -31,24 +31,24 @@ GET http://localhost:7373/api/auth/logout
 ### get all users
 
 GET http://localhost:7373/api/users
-Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjliZWI3Zjk1LWNmNmEtNDI4Ny1hMjVhLWRkYjU2Y2JhZjk5MyIsImlhdCI6MTc2MjE2ODcyNywiZXhwIjoxNzYyNzczNTI3fQ.jSvicKYncMx_SM6n47kaeggVAzliD7WcvG6kzACPV6Q; Max-Age=604800; Path=/; Expires=Mon, 10 Nov 2025 11:18:47 GMT; HttpOnly
+Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxOTY3YTk2LTgxNjItNDczZC04MmNjLTY1MzMzYmE2MzNkZiIsImlhdCI6MTc2MzMyNTY5MiwiZXhwIjoxNzYzOTMwNDkyfQ.gbRR57y97Y0ByIOdOT2H4ESrHXIqCBB-HDMa1cpYjxI; Path=/; HttpOnly
 
 
 ### get user by id
 
 GET http://localhost:7373/api/users/ceb0b46c-9283-4dc2-9971-165fc700fb95
-Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjliZWI3Zjk1LWNmNmEtNDI4Ny1hMjVhLWRkYjU2Y2JhZjk5MyIsImlhdCI6MTc2MjE2ODcyNywiZXhwIjoxNzYyNzczNTI3fQ.jSvicKYncMx_SM6n47kaeggVAzliD7WcvG6kzACPV6Q; Max-Age=604800; Path=/; Expires=Mon, 10 Nov 2025 11:18:47 GMT; HttpOnly
+Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxOTY3YTk2LTgxNjItNDczZC04MmNjLTY1MzMzYmE2MzNkZiIsImlhdCI6MTc2MzMyNTY5MiwiZXhwIjoxNzYzOTMwNDkyfQ.gbRR57y97Y0ByIOdOT2H4ESrHXIqCBB-HDMa1cpYjxI; Path=/; HttpOnly
 
 
 ### create new user
 
 POST http://localhost:7373/api/users
 Content-Type: application/json
-Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjliZWI3Zjk1LWNmNmEtNDI4Ny1hMjVhLWRkYjU2Y2JhZjk5MyIsImlhdCI6MTc2MjE2ODcyNywiZXhwIjoxNzYyNzczNTI3fQ.jSvicKYncMx_SM6n47kaeggVAzliD7WcvG6kzACPV6Q; Max-Age=604800; Path=/; Expires=Mon, 10 Nov 2025 11:18:47 GMT; HttpOnly
+Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxOTY3YTk2LTgxNjItNDczZC04MmNjLTY1MzMzYmE2MzNkZiIsImlhdCI6MTc2MzMyNTY5MiwiZXhwIjoxNzYzOTMwNDkyfQ.gbRR57y97Y0ByIOdOT2H4ESrHXIqCBB-HDMa1cpYjxI; Path=/; HttpOnly
 
 {
   "username": "ahmed",
-  "password": "password"
+  "password": "ahmed"
 }
 
 
@@ -56,7 +56,7 @@ Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjliZWI3Zjk1LWNmNmEtNDI
 
 PUT http://localhost:7373/api/users/24cf3678-6b42-4b87-968d-a7e4038054d2
 Content-Type: application/json
-Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjliZWI3Zjk1LWNmNmEtNDI4Ny1hMjVhLWRkYjU2Y2JhZjk5MyIsImlhdCI6MTc2MjE2ODcyNywiZXhwIjoxNzYyNzczNTI3fQ.jSvicKYncMx_SM6n47kaeggVAzliD7WcvG6kzACPV6Q; Max-Age=604800; Path=/; Expires=Mon, 10 Nov 2025 11:18:47 GMT; HttpOnly
+Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxOTY3YTk2LTgxNjItNDczZC04MmNjLTY1MzMzYmE2MzNkZiIsImlhdCI6MTc2MzMyNTY5MiwiZXhwIjoxNzYzOTMwNDkyfQ.gbRR57y97Y0ByIOdOT2H4ESrHXIqCBB-HDMa1cpYjxI; Path=/; HttpOnly
 
 {
   "username": "muhammad",
@@ -67,8 +67,8 @@ Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjliZWI3Zjk1LWNmNmEtNDI
 
 ### delete user
 
-DELETE http://localhost:7373/api/users/a4ea0e7e-9fbe-46e5-b531-fce816345303
-Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjliZWI3Zjk1LWNmNmEtNDI4Ny1hMjVhLWRkYjU2Y2JhZjk5MyIsImlhdCI6MTc2MjE2ODcyNywiZXhwIjoxNzYyNzczNTI3fQ.jSvicKYncMx_SM6n47kaeggVAzliD7WcvG6kzACPV6Q; Max-Age=604800; Path=/; Expires=Mon, 10 Nov 2025 11:18:47 GMT; HttpOnly
+DELETE http://localhost:7373/api/users/b0b76520-3705-4ac0-aaea-c5c8990ebf37
+Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxOTY3YTk2LTgxNjItNDczZC04MmNjLTY1MzMzYmE2MzNkZiIsImlhdCI6MTc2MzMyNTY5MiwiZXhwIjoxNzYzOTMwNDkyfQ.gbRR57y97Y0ByIOdOT2H4ESrHXIqCBB-HDMa1cpYjxI; Path=/; HttpOnly
 
 
 #################
@@ -78,24 +78,26 @@ Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjliZWI3Zjk1LWNmNmEtNDI
 ### get all customers
 
 GET http://localhost:7373/api/customers
-Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjliZWI3Zjk1LWNmNmEtNDI4Ny1hMjVhLWRkYjU2Y2JhZjk5MyIsImlhdCI6MTc2MjE2ODcyNywiZXhwIjoxNzYyNzczNTI3fQ.jSvicKYncMx_SM6n47kaeggVAzliD7WcvG6kzACPV6Q; Max-Age=604800; Path=/; Expires=Mon, 10 Nov 2025 11:18:47 GMT; HttpOnly
+Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxOTY3YTk2LTgxNjItNDczZC04MmNjLTY1MzMzYmE2MzNkZiIsImlhdCI6MTc2MzMyNTY5MiwiZXhwIjoxNzYzOTMwNDkyfQ.gbRR57y97Y0ByIOdOT2H4ESrHXIqCBB-HDMa1cpYjxI; Path=/; HttpOnly
 
 
 ### get customer by id
 
 GET http://localhost:7373/api/customers/318528cd-251b-42df-84e1-5eabc183ede3
-Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjliZWI3Zjk1LWNmNmEtNDI4Ny1hMjVhLWRkYjU2Y2JhZjk5MyIsImlhdCI6MTc2MjE2ODcyNywiZXhwIjoxNzYyNzczNTI3fQ.jSvicKYncMx_SM6n47kaeggVAzliD7WcvG6kzACPV6Q; Max-Age=604800; Path=/; Expires=Mon, 10 Nov 2025 11:18:47 GMT; HttpOnly
+Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxOTY3YTk2LTgxNjItNDczZC04MmNjLTY1MzMzYmE2MzNkZiIsImlhdCI6MTc2MzMyNTY5MiwiZXhwIjoxNzYzOTMwNDkyfQ.gbRR57y97Y0ByIOdOT2H4ESrHXIqCBB-HDMa1cpYjxI; Path=/; HttpOnly
 
 
 ### create new customer
 
 POST http://localhost:7373/api/customers
 Content-Type: application/json
-Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjliZWI3Zjk1LWNmNmEtNDI4Ny1hMjVhLWRkYjU2Y2JhZjk5MyIsImlhdCI6MTc2MjE2ODcyNywiZXhwIjoxNzYyNzczNTI3fQ.jSvicKYncMx_SM6n47kaeggVAzliD7WcvG6kzACPV6Q; Max-Age=604800; Path=/; Expires=Mon, 10 Nov 2025 11:18:47 GMT; HttpOnly
+Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxOTY3YTk2LTgxNjItNDczZC04MmNjLTY1MzMzYmE2MzNkZiIsImlhdCI6MTc2MzMyNTY5MiwiZXhwIjoxNzYzOTMwNDkyfQ.gbRR57y97Y0ByIOdOT2H4ESrHXIqCBB-HDMa1cpYjxI; Path=/; HttpOnly
 
 {
-  "name": "muhammad",
-  "phone": "234567890"
+  "name": "ahmed",
+  "email": "test@test.com",
+  "phone": "97570901",
+  "address": "123 Main St, City, Country"
 }
 
 
@@ -103,7 +105,7 @@ Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjliZWI3Zjk1LWNmNmEtNDI
 
 PUT http://localhost:7373/api/customers/318528cd-251b-42df-84e1-5eabc183ede3
 Content-Type: application/json
-Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjliZWI3Zjk1LWNmNmEtNDI4Ny1hMjVhLWRkYjU2Y2JhZjk5MyIsImlhdCI6MTc2MjE2ODcyNywiZXhwIjoxNzYyNzczNTI3fQ.jSvicKYncMx_SM6n47kaeggVAzliD7WcvG6kzACPV6Q; Max-Age=604800; Path=/; Expires=Mon, 10 Nov 2025 11:18:47 GMT; HttpOnly
+Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxOTY3YTk2LTgxNjItNDczZC04MmNjLTY1MzMzYmE2MzNkZiIsImlhdCI6MTc2MzMyNTY5MiwiZXhwIjoxNzYzOTMwNDkyfQ.gbRR57y97Y0ByIOdOT2H4ESrHXIqCBB-HDMa1cpYjxI; Path=/; HttpOnly
 
 {
   "name": "muhammad",
@@ -115,7 +117,7 @@ Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjliZWI3Zjk1LWNmNmEtNDI
 ### delete customer
 
 DELETE http://localhost:7373/api/customers/e1239588-c2a7-4427-9625-de8a9e1ec9cb
-Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjliZWI3Zjk1LWNmNmEtNDI4Ny1hMjVhLWRkYjU2Y2JhZjk5MyIsImlhdCI6MTc2MjE2ODcyNywiZXhwIjoxNzYyNzczNTI3fQ.jSvicKYncMx_SM6n47kaeggVAzliD7WcvG6kzACPV6Q; Max-Age=604800; Path=/; Expires=Mon, 10 Nov 2025 11:18:47 GMT; HttpOnly
+Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxOTY3YTk2LTgxNjItNDczZC04MmNjLTY1MzMzYmE2MzNkZiIsImlhdCI6MTc2MzMyNTY5MiwiZXhwIjoxNzYzOTMwNDkyfQ.gbRR57y97Y0ByIOdOT2H4ESrHXIqCBB-HDMa1cpYjxI; Path=/; HttpOnly
 
 
 ################
@@ -125,19 +127,19 @@ Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjliZWI3Zjk1LWNmNmEtNDI
 ### get all products
 
 GET http://localhost:7373/api/products
-Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjliZWI3Zjk1LWNmNmEtNDI4Ny1hMjVhLWRkYjU2Y2JhZjk5MyIsImlhdCI6MTc2MjE2ODcyNywiZXhwIjoxNzYyNzczNTI3fQ.jSvicKYncMx_SM6n47kaeggVAzliD7WcvG6kzACPV6Q; Max-Age=604800; Path=/; Expires=Mon, 10 Nov 2025 11:18:47 GMT; HttpOnly
+Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxOTY3YTk2LTgxNjItNDczZC04MmNjLTY1MzMzYmE2MzNkZiIsImlhdCI6MTc2MzMyNTY5MiwiZXhwIjoxNzYzOTMwNDkyfQ.gbRR57y97Y0ByIOdOT2H4ESrHXIqCBB-HDMa1cpYjxI; Path=/; HttpOnly
 
 
 ### get product by id
 
 GET http://localhost:7373/api/products/1
-Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjliZWI3Zjk1LWNmNmEtNDI4Ny1hMjVhLWRkYjU2Y2JhZjk5MyIsImlhdCI6MTc2MjE2ODcyNywiZXhwIjoxNzYyNzczNTI3fQ.jSvicKYncMx_SM6n47kaeggVAzliD7WcvG6kzACPV6Q; Max-Age=604800; Path=/; Expires=Mon, 10 Nov 2025 11:18:47 GMT; HttpOnly
+Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxOTY3YTk2LTgxNjItNDczZC04MmNjLTY1MzMzYmE2MzNkZiIsImlhdCI6MTc2MzMyNTY5MiwiZXhwIjoxNzYzOTMwNDkyfQ.gbRR57y97Y0ByIOdOT2H4ESrHXIqCBB-HDMa1cpYjxI; Path=/; HttpOnly
 
 
 ### delete product
 
 DELETE http://localhost:7373/api/products/2
-Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjliZWI3Zjk1LWNmNmEtNDI4Ny1hMjVhLWRkYjU2Y2JhZjk5MyIsImlhdCI6MTc2MjE2ODcyNywiZXhwIjoxNzYyNzczNTI3fQ.jSvicKYncMx_SM6n47kaeggVAzliD7WcvG6kzACPV6Q; Max-Age=604800; Path=/; Expires=Mon, 10 Nov 2025 11:18:47 GMT; HttpOnly
+Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxOTY3YTk2LTgxNjItNDczZC04MmNjLTY1MzMzYmE2MzNkZiIsImlhdCI6MTc2MzMyNTY5MiwiZXhwIjoxNzYzOTMwNDkyfQ.gbRR57y97Y0ByIOdOT2H4ESrHXIqCBB-HDMa1cpYjxI; Path=/; HttpOnly
 
 
 ##############
@@ -147,20 +149,20 @@ Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjliZWI3Zjk1LWNmNmEtNDI
 ### get all orders
 
 GET http://localhost:7373/api/orders
-Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjliZWI3Zjk1LWNmNmEtNDI4Ny1hMjVhLWRkYjU2Y2JhZjk5MyIsImlhdCI6MTc2MjE2ODcyNywiZXhwIjoxNzYyNzczNTI3fQ.jSvicKYncMx_SM6n47kaeggVAzliD7WcvG6kzACPV6Q; Max-Age=604800; Path=/; Expires=Mon, 10 Nov 2025 11:18:47 GMT; HttpOnly
+Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxOTY3YTk2LTgxNjItNDczZC04MmNjLTY1MzMzYmE2MzNkZiIsImlhdCI6MTc2MzMyNTY5MiwiZXhwIjoxNzYzOTMwNDkyfQ.gbRR57y97Y0ByIOdOT2H4ESrHXIqCBB-HDMa1cpYjxI; Path=/; HttpOnly
 
 
 ### get order by id
 
-GET http://localhost:7373/api/orders/1
-Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjliZWI3Zjk1LWNmNmEtNDI4Ny1hMjVhLWRkYjU2Y2JhZjk5MyIsImlhdCI6MTc2MjE2ODcyNywiZXhwIjoxNzYyNzczNTI3fQ.jSvicKYncMx_SM6n47kaeggVAzliD7WcvG6kzACPV6Q; Max-Age=604800; Path=/; Expires=Mon, 10 Nov 2025 11:18:47 GMT; HttpOnly
+GET http://localhost:7373/api/orders/5
+Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxOTY3YTk2LTgxNjItNDczZC04MmNjLTY1MzMzYmE2MzNkZiIsImlhdCI6MTc2MzMyNTY5MiwiZXhwIjoxNzYzOTMwNDkyfQ.gbRR57y97Y0ByIOdOT2H4ESrHXIqCBB-HDMa1cpYjxI; Path=/; HttpOnly
 
 
 ### place order
 
 POST http://localhost:7373/api/orders/place-order
 Content-Type: application/json
-Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjliZWI3Zjk1LWNmNmEtNDI4Ny1hMjVhLWRkYjU2Y2JhZjk5MyIsImlhdCI6MTc2MjE2ODcyNywiZXhwIjoxNzYyNzczNTI3fQ.jSvicKYncMx_SM6n47kaeggVAzliD7WcvG6kzACPV6Q; Max-Age=604800; Path=/; Expires=Mon, 10 Nov 2025 11:18:47 GMT; HttpOnly
+Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxOTY3YTk2LTgxNjItNDczZC04MmNjLTY1MzMzYmE2MzNkZiIsImlhdCI6MTc2MzMyNTY5MiwiZXhwIjoxNzYzOTMwNDkyfQ.gbRR57y97Y0ByIOdOT2H4ESrHXIqCBB-HDMa1cpYjxI; Path=/; HttpOnly
 
 {
   "customer": "muhammad",
@@ -169,7 +171,7 @@ Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjliZWI3Zjk1LWNmNmEtNDI
   "orderItems": [
     {
       "productId": 1,
-      "quantity": 2
+      "quantity": 3
     },
     {
       "productId": 2,
@@ -182,4 +184,38 @@ Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjliZWI3Zjk1LWNmNmEtNDI
 ### undo order
 
 GET http://localhost:7373/api/orders/2/undo-order
-Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjliZWI3Zjk1LWNmNmEtNDI4Ny1hMjVhLWRkYjU2Y2JhZjk5MyIsImlhdCI6MTc2MjE2ODcyNywiZXhwIjoxNzYyNzczNTI3fQ.jSvicKYncMx_SM6n47kaeggVAzliD7WcvG6kzACPV6Q; Max-Age=604800; Path=/; Expires=Mon, 10 Nov 2025 11:18:47 GMT; HttpOnly
+Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxOTY3YTk2LTgxNjItNDczZC04MmNjLTY1MzMzYmE2MzNkZiIsImlhdCI6MTc2MzMyNTY5MiwiZXhwIjoxNzYzOTMwNDkyfQ.gbRR57y97Y0ByIOdOT2H4ESrHXIqCBB-HDMa1cpYjxI; Path=/; HttpOnly
+
+
+#################
+### Analytics ###
+#################
+
+### orders today
+
+GET http://localhost:7373/api/analytics/orders-today
+Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxOTY3YTk2LTgxNjItNDczZC04MmNjLTY1MzMzYmE2MzNkZiIsImlhdCI6MTc2MzMyNTY5MiwiZXhwIjoxNzYzOTMwNDkyfQ.gbRR57y97Y0ByIOdOT2H4ESrHXIqCBB-HDMa1cpYjxI; Path=/; HttpOnly
+
+
+### revenue today
+
+GET http://localhost:7373/api/analytics/revenue-today
+Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxOTY3YTk2LTgxNjItNDczZC04MmNjLTY1MzMzYmE2MzNkZiIsImlhdCI6MTc2MzMyNTY5MiwiZXhwIjoxNzYzOTMwNDkyfQ.gbRR57y97Y0ByIOdOT2H4ESrHXIqCBB-HDMa1cpYjxI; Path=/; HttpOnly
+
+
+### top product
+
+GET http://localhost:7373/api/analytics/top-product
+Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxOTY3YTk2LTgxNjItNDczZC04MmNjLTY1MzMzYmE2MzNkZiIsImlhdCI6MTc2MzMyNTY5MiwiZXhwIjoxNzYzOTMwNDkyfQ.gbRR57y97Y0ByIOdOT2H4ESrHXIqCBB-HDMa1cpYjxI; Path=/; HttpOnly
+
+
+### lowest stock products
+
+GET http://localhost:7373/api/analytics/lowest-stock-products
+Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxOTY3YTk2LTgxNjItNDczZC04MmNjLTY1MzMzYmE2MzNkZiIsImlhdCI6MTc2MzMyNTY5MiwiZXhwIjoxNzYzOTMwNDkyfQ.gbRR57y97Y0ByIOdOT2H4ESrHXIqCBB-HDMa1cpYjxI; Path=/; HttpOnly
+
+
+### week revenue
+
+GET http://localhost:7373/api/analytics/week-revenue
+Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxOTY3YTk2LTgxNjItNDczZC04MmNjLTY1MzMzYmE2MzNkZiIsImlhdCI6MTc2MzMyNTY5MiwiZXhwIjoxNzYzOTMwNDkyfQ.gbRR57y97Y0ByIOdOT2H4ESrHXIqCBB-HDMa1cpYjxI; Path=/; HttpOnly
