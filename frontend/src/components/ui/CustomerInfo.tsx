@@ -1,9 +1,11 @@
 import axios from "axios";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import editIcon from "../../assets/icon-edit.svg";
 import trashIcon from "../../assets/icon-trash.svg";
 import { BACKEND_URL } from "../../constants";
+import DialogBox from "./DialogBox";
 
 export default function CustomerInfo(props: {
   id: string;
@@ -14,11 +16,19 @@ export default function CustomerInfo(props: {
   unAuthorized: boolean;
   handleDeleteCustomer: (id: string) => void;
 }) {
+  const [showDialogBox, setShowDialogBox] = useState(false);
+
   function deleteCustomer() {
-    axios
-      .delete(`${BACKEND_URL}/customers/${props.id}`, { withCredentials: true })
-      .then(() => props.handleDeleteCustomer(props.id))
-      .catch((err) => toast.error(err.response.data.message));
+    setShowDialogBox(true);
+  }
+
+  function handleAnswer(answer: boolean) {
+    if (answer)
+      axios
+        .delete(`${BACKEND_URL}/customers/${props.id}`, { withCredentials: true })
+        .then(() => props.handleDeleteCustomer(props.id))
+        .catch((err) => toast.error(err.response.data.message));
+    setShowDialogBox(false);
   }
 
   return (
@@ -30,7 +40,10 @@ export default function CustomerInfo(props: {
         <p className="flex-1/5 text-center">{props.address}</p>
         <div className="flex-1/5 flex gap-4 justify-center items-center">
           <Link to="/customer/update" state={{ id: props.id }}>
-            <button className="image cursor-pointer bg-[#FDF8E9] rounded-md border border-[rgba(87,90,56,0.1)] px-3 py-2 text-center disabled:opacity-50 disabled:cursor-not-allowed" disabled={props.unAuthorized}>
+            <button
+              className="image cursor-pointer bg-[#FDF8E9] rounded-md border border-[rgba(87,90,56,0.1)] px-3 py-2 text-center disabled:opacity-50 disabled:cursor-not-allowed"
+              disabled={props.unAuthorized}
+            >
               <img src={editIcon} className="relative left-0.75" />
             </button>
           </Link>
@@ -43,6 +56,14 @@ export default function CustomerInfo(props: {
           </button>
         </div>
       </div>
+      <ToastContainer position="bottom-center" autoClose={3000} />
+      <DialogBox
+        message="Are you sure you want to delete this customer?"
+        confirmMessage="Yes"
+        cancelMessage="No"
+        showDialogBox={showDialogBox}
+        handleAnswer={handleAnswer}
+      />
     </div>
   );
 }

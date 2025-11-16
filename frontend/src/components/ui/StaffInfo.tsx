@@ -1,9 +1,11 @@
 import axios from "axios";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify/unstyled";
 import editIcon from "../../assets/icon-edit.svg";
 import trashIcon from "../../assets/icon-trash.svg";
 import { BACKEND_URL } from "../../constants";
+import DialogBox from "./DialogBox";
 
 export default function StaffInfo(props: {
   id: string;
@@ -18,12 +20,19 @@ export default function StaffInfo(props: {
   const statusTextColor = props.status.toLowerCase() === "active" ? "#003702" : "#9B0300";
   const role = props.role[0] + props.role.slice(1).toLowerCase();
   const status = props.status[0] + props.status.slice(1).toLowerCase();
+  const [showDialogBox, setShowDialogBox] = useState(false);
 
   function deleteUser() {
-    axios
-      .delete(`${BACKEND_URL}/users/${props.id}`, { withCredentials: true })
-      .then(() => props.handleDeleteUser(props.id))
-      .catch((err) => toast.error(err.response.data.message));
+    setShowDialogBox(true);
+  }
+
+  function handleAnswer(answer: boolean) {
+    if (answer) 
+      axios
+        .delete(`${BACKEND_URL}/users/${props.id}`, { withCredentials: true })
+        .then(() => props.handleDeleteUser(props.id))
+        .catch((err) => toast.error(err.response.data.message));
+    setShowDialogBox(false);
   }
 
   return (
@@ -56,6 +65,13 @@ export default function StaffInfo(props: {
         </div>
       </div>
       <ToastContainer position="bottom-center" autoClose={3000} />
+      <DialogBox
+        message="Are you sure you want to delete this user?"
+        confirmMessage="Yes"
+        cancelMessage="No"
+        showDialogBox={showDialogBox}
+        handleAnswer={handleAnswer}
+      />
     </div>
   );
 }

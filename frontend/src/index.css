@@ -16,6 +16,10 @@ body {
   animation: spin 1s linear infinite 0.5s;
 }
 
+.dialogbox {
+  animation: show 0.5s forwards;
+}
+
 @keyframes show {
   to {
     opacity: 1;

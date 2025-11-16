@@ -1,11 +1,12 @@
 import axios from "axios";
 import jsPDF from "jspdf";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import userIcon from "../../../assets/icon-user.svg";
 import { BACKEND_URL } from "../../../constants";
 import type { ICart } from "../../../interfaces/IOrder";
+import DialogBox from "../../ui/DialogBox";
 
 export default function OrderDetails() {
   const location = useLocation();
@@ -20,6 +21,7 @@ export default function OrderDetails() {
     cart: ICart[];
     unAuthorized: boolean;
   };
+  const [showDialogBox, setShowDialogBox] = useState(false);
 
   let statusColor = "";
   switch (status.toLowerCase()) {
@@ -45,10 +47,16 @@ export default function OrderDetails() {
   }
 
   function cancelOrder() {
-    axios
-      .get(`${BACKEND_URL}/orders/${id}/undo-order`, { withCredentials: true })
-      .then(() => navigate("/orders"))
-      .catch((err) => toast.error(err.response.data.message));
+    setShowDialogBox(true);
+  }
+
+  function handleAnswer(answer: boolean) {
+    if (answer)
+      axios
+        .get(`${BACKEND_URL}/orders/${id}/undo-order`, { withCredentials: true })
+        .then(() => navigate("/orders"))
+        .catch((err) => toast.error(err.response.data.message));
+    setShowDialogBox(false);
   }
 
   function downloadPDF() {
@@ -148,6 +156,13 @@ export default function OrderDetails() {
         </button>
       </div>
       <ToastContainer position="bottom-center" autoClose={3000} />
+      <DialogBox
+        message="Are you sure you want to cancel this order?"
+        confirmMessage="Yes"
+        cancelMessage="No"
+        showDialogBox={showDialogBox}
+        handleAnswer={handleAnswer}
+      />
     </div>
   );
 }

@@ -11,8 +11,9 @@ import Spinner from "../../ui/spinner";
 
 export default function ListCustomers() {
   const navigate = useNavigate();
-  const [customers, setCustomers] = useState<ICustomer[]>();
-  const [searchedCustomers, setSearchedCustomers] = useState<ICustomer[]>();
+  const [customers, setCustomers] = useState<ICustomer[]>([]);
+  const [search, setSearch] = useState("");
+  const [searchedCustomers, setSearchedCustomers] = useState<ICustomer[]>([]);
   const [loading, setLoading] = useState(true);
   const [unAuthorized, setUnauthorized] = useState(false);
 
@@ -37,8 +38,7 @@ export default function ListCustomers() {
       .catch((err) => toast.error(err.response.data.message));
   }, [navigate]);
 
-  function handleSearch(e: React.ChangeEvent<HTMLInputElement>) {
-    const search = e.target.value;
+  useEffect(() => {
     if (search === "") setSearchedCustomers(customers);
     else
       setSearchedCustomers(
@@ -50,6 +50,10 @@ export default function ListCustomers() {
             customer.address?.toLowerCase().includes(search.toLowerCase()),
         ),
       );
+  }, [customers, search]);
+
+  function handleSearch(e: React.ChangeEvent<HTMLInputElement>) {
+    setSearch(e.target.value);
   }
 
   function handleDeleteCustomer(id: string) {
@@ -90,7 +94,7 @@ export default function ListCustomers() {
               <p className="flex-1/5 text-center">Address</p>
               <p className="flex-1/5 text-center">Action</p>
             </div>
-            {[...(searchedCustomers || [])].reverse().map((customer, index) => (
+            {[...searchedCustomers].reverse().map((customer, index) => (
               <CustomerInfo
                 key={index}
                 id={customer.id}

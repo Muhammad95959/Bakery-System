@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import genericImage from "../../assets/icon-generic-image.svg";
 import { BACKEND_URL } from "../../constants";
+import { ToastContainer } from "react-toastify/unstyled";
+import DialogBox from "./DialogBox";
+import { useState } from "react";
 
 export default function ProductInfo(props: {
   image?: string;
@@ -15,12 +18,19 @@ export default function ProductInfo(props: {
   handleDeleteProduct: (id: number) => void;
 }) {
   const imagePath = (props.image && `${BACKEND_URL.replace("/api", "/images")}/${props.image}`) || genericImage;
+  const [showDialogBox, setShowDialogBox] = useState(false);
 
   function deleteProduct() {
-    axios
-      .delete(`${BACKEND_URL}/products/${props.id}`, { withCredentials: true })
-      .then(() => props.handleDeleteProduct(props.id))
-      .catch((err) => toast.error(err.response.data.message));
+    setShowDialogBox(true);
+  }
+
+  function handleAnswer(answer: boolean) {
+    if (answer)
+      axios
+        .delete(`${BACKEND_URL}/products/${props.id}`, { withCredentials: true })
+        .then(() => props.handleDeleteProduct(props.id))
+        .catch((err) => toast.error(err.response.data.message));
+    setShowDialogBox(false);
   }
 
   return (
@@ -51,6 +61,14 @@ export default function ProductInfo(props: {
           </button>
         </div>
       </div>
+      <ToastContainer position="bottom-center" autoClose={3000} />
+      <DialogBox
+        message="Are you sure you want to delete this product?"
+        confirmMessage="Yes"
+        cancelMessage="No"
+        showDialogBox={showDialogBox}
+        handleAnswer={handleAnswer}
+      />
     </div>
   );
 }
