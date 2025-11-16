@@ -29,28 +29,30 @@ export default function Sidebar() {
   }
 
   return (
-    <div className="bg-[#6B3D24] flex flex-col items-center min-h-screen h-full">
-      <img src={bakeryLogo} className="w-[280px] h-[280px]" />
-      <ul className="flex flex-col gap-7.5 w-[60%]">
-        {links.map((link) => (
-          <SidebarLink
-            key={link.to}
-            to={link.to}
-            icon={link.icon}
-            label={link.label}
-            active={pathname.startsWith(link.to)}
-          />
-        ))}
-      </ul>
-      <button
-        onClick={logout}
-        className="flex gap-1 justify-center mt-20 mb-10 items-center bg-[#FF7C00] p-1.5 rounded-[10px] w-[60%] cursor-pointer hover:opacity-90"
-      >
-        <p className="text-[24px] text-[#F7E9B2]">Logout</p>
-        <div className="w-9 flex justify-center">
-          <img src={logoutIcon} />
-        </div>
-      </button>
+    <div className="bg-[#6B3D24] min-h-screen h-full relative">
+      <div className="sticky top-0 flex flex-col items-center">
+        <img src={bakeryLogo} className="w-[280px] h-[280px]" />
+        <ul className="flex flex-col gap-7.5 w-[60%]">
+          {links.map((link) => (
+            <SidebarLink
+              key={link.to}
+              to={link.to}
+              icon={link.icon}
+              label={link.label}
+              active={pathname.startsWith(link.to)}
+            />
+          ))}
+        </ul>
+        <button
+          onClick={logout}
+          className="flex gap-1 justify-center mt-20 mb-10 items-center bg-[#FF7C00] p-1.5 rounded-[10px] w-[60%] cursor-pointer hover:opacity-90"
+        >
+          <p className="text-[24px] text-[#F7E9B2]">Logout</p>
+          <div className="w-9 flex justify-center">
+            <img src={logoutIcon} />
+          </div>
+        </button>
+      </div>
     </div>
   );
 }

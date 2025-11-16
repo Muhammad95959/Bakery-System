@@ -56,7 +56,7 @@ export default function AddStaff() {
   return (
     <>
       {(loading && <Spinner />) || (
-        <div className="p-20 basis-[80%]">
+        <div className="p-20 basis-[80%] min-w-225">
           <div className="flex justify-between items-center mb-20">
             <h1 className="text-[48px] font-semibold">Add Staff</h1>
             <div className="image bg-[#FFF8E2] p-4 rounded-[50%]">
