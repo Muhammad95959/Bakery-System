@@ -25,10 +25,7 @@ export default function Login() {
         },
         { withCredentials: true },
       )
-      .then((res) => {
-        if (res.data.data.user.role.toLowerCase() === "admin") navigate("/manage-staff");
-        else navigate("/orders");
-      })
+      .then(() => navigate("/dashboard"))
       .catch((err) => toast.error(err.response.data.message));
   }
 
