@@ -88,6 +88,20 @@ view Cart {
   @@map("cart_view")
 }
 
+view LowestStockProducts {
+  name  String
+  stock Decimal @db.Decimal(8, 2)
+
+  @@map("lowest_stock_products")
+}
+
+view WeekRevenue {
+  day     String
+  revenue Decimal @db.Decimal
+
+  @@map("week_revenue")
+}
+
 enum Role {
   ADMIN
   STAFF
