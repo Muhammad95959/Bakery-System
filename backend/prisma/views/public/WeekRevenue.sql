@@ -2,8 +2,8 @@ WITH days AS (
   SELECT
     (
       generate_series(
-        (CURRENT_DATE - '6 days' :: INTERVAL),
-        (CURRENT_DATE) :: timestamp without time zone,
+        ((now() AT TIME ZONE 'utc')::date - '6 days' :: INTERVAL),
+        ((now() AT TIME ZONE 'utc')::date),
         '1 day' :: INTERVAL
       )
     ) :: date AS DAY

@@ -1,15 +1,13 @@
 SELECT
   p.name
 FROM
-  (
-    order_items i
-    JOIN products p ON ((p.id = i."productId"))
-  )
+  order_items i
+  JOIN products p ON p.id = i."productId"
 WHERE
-  ((i."createdAt") :: date = CURRENT_DATE)
+  i."createdAt" :: date = (now() AT TIME ZONE 'utc')::date
 GROUP BY
   p.id
 ORDER BY
-  (sum(i.quantity)) DESC
+  SUM(i.quantity) DESC
 LIMIT
   1;

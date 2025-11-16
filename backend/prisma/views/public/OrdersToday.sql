@@ -3,4 +3,4 @@ SELECT
 FROM
   orders
 WHERE
-  (("createdAt") :: date = CURRENT_DATE);
+  (("createdAt") :: date = (now() AT TIME ZONE 'utc')::date);
