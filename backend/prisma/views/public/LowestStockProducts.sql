@@ -6,6 +6,6 @@ FROM
 WHERE
   (deleted = false)
 ORDER BY
-  stock DESC
+  stock
 LIMIT
   5;
