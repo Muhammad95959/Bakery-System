@@ -197,12 +197,6 @@ GET http://localhost:7373/api/analytics/orders-today
 Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxOTY3YTk2LTgxNjItNDczZC04MmNjLTY1MzMzYmE2MzNkZiIsImlhdCI6MTc2MzMyNTY5MiwiZXhwIjoxNzYzOTMwNDkyfQ.gbRR57y97Y0ByIOdOT2H4ESrHXIqCBB-HDMa1cpYjxI; Path=/; HttpOnly
 
 
-### revenue today
-
-GET http://localhost:7373/api/analytics/revenue-today
-Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxOTY3YTk2LTgxNjItNDczZC04MmNjLTY1MzMzYmE2MzNkZiIsImlhdCI6MTc2MzMyNTY5MiwiZXhwIjoxNzYzOTMwNDkyfQ.gbRR57y97Y0ByIOdOT2H4ESrHXIqCBB-HDMa1cpYjxI; Path=/; HttpOnly
-
-
 ### top product
 
 GET http://localhost:7373/api/analytics/top-product

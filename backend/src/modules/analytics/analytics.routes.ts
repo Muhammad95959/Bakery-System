@@ -6,8 +6,6 @@ const router = express.Router();
 
 router.get("/orders-today", authController.protect, analyticsController.ordersToday);
 
-router.get("/revenue-today", authController.protect, analyticsController.revenueToday);
-
 router.get("/top-product", authController.protect, analyticsController.topProduct);
 
 router.get("/lowest-stock-products", authController.protect, analyticsController.lowestStockProducts);

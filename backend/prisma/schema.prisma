@@ -88,6 +88,18 @@ view Cart {
   @@map("cart_view")
 }
 
+view OrdersToday {
+  count Int
+
+  @@map("orders_today")
+}
+
+view TopProduct {
+  name String
+
+  @@map("top_product")
+}
+
 view LowestStockProducts {
   name  String
   stock Decimal @db.Decimal(8, 2)
@@ -100,24 +112,6 @@ view WeekRevenue {
   revenue Decimal @db.Decimal(8, 2)
 
   @@map("week_revenue")
-}
-
-view OrdersToday {
-  count Int
-
-  @@map("orders_today")
-}
-
-view RevenueToday {
-  revenue Decimal? @db.Decimal(8, 2)
-
-  @@map("revenue_today")
-}
-
-view TopProduct {
-  name String
-
-  @@map("top_product")
 }
 
 enum Role {
