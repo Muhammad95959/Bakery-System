@@ -1,6 +1,7 @@
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import express from "express";
+import analyticsRouter from "./modules/analytics/analytics.routes";
 import authRouter from "./modules/auth/auth.routes";
 import customerRouter from "./modules/customers/customers.routes";
 import ordersRouter from "./modules/orders/orders.routes";
@@ -14,6 +15,7 @@ app.use(cookieParser());
 app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 
 app.get("/", (_req, res) => res.end("Bakery API"));
+app.use("/api/analytics", analyticsRouter)
 app.use("/api/auth", authRouter);
 app.use("/api/customers", customerRouter);
 app.use("/api/orders", ordersRouter);
