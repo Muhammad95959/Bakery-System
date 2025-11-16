@@ -54,7 +54,7 @@ model Product {
 model Order {
   id            Int           @id @default(autoincrement())
   userId        String?
-  status        OrderStatus   @default(PENDING)
+  status        OrderStatus   @default(PAID)
   paymentMethod PaymentMethod @default(CASH)
   total         Decimal       @default(0) @db.Decimal(8, 2)
   createdAt     DateTime      @default(now())
@@ -125,8 +125,7 @@ enum UserStatus {
 }
 
 enum OrderStatus {
-  PENDING
-  COMPLETED
+  PAID
   CANCELED
 }
 
