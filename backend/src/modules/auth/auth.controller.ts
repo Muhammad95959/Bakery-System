@@ -56,6 +56,7 @@ export async function login(req: Request, res: Response) {
     res.cookie("jwt", signToken(user.id), {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
+      sameSite: "none",
     });
     res
       .status(200)
