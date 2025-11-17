@@ -41,7 +41,7 @@ export default function Login() {
           <img src={cupcakeIcon} className="w-20" />
           <h1 className="text-[60px] font-bold tracking-wide">Bakery</h1>
         </div>
-        <p className="mt-4 text-[48px] font-semibold tracking-widest">Welcom back!</p>
+        <p className="mt-4 text-[48px] font-semibold tracking-widest">Welcome back!</p>
         <form onSubmit={login} className="min-w-[40%] max-w-[500px] mt-20 flex flex-col gap-6">
           <div className="border border-[#ABA89E] p-5 w-full flex gap-8 rounded-[10px]">
             <img src={mailIcon} className="w-10" />
