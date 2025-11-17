@@ -102,7 +102,7 @@ export default function AddOrder() {
         `${BACKEND_URL}/orders/place-order`,
         {
           customer: customerRef.current?.value,
-          status: "PENDING",
+          status: "PAID",
           paymentMethod: paymentMethodRef.current?.value.replace(" ", "_"),
           orderItems: cart.map((item) => ({ productId: item.id, quantity: item.quantity })),
         },

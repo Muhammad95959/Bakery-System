@@ -107,8 +107,7 @@ export default function OrderList() {
                 onChange={statusChangeHandler}
               >
                 <option className="bg-white text-[#6B3D24]">All</option>
-                <option className="bg-white text-[#6B3D24]">Pending</option>
-                <option className="bg-white text-[#6B3D24]">Delivered</option>
+                <option className="bg-white text-[#6B3D24]">Paid</option>
                 <option className="bg-white text-[#6B3D24]">Canceled</option>
               </select>
             </div>
