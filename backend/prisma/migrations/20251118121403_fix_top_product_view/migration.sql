@@ -1,3 +1,5 @@
+CREATE
+OR REPLACE VIEW top_product AS
 SELECT
   p.name
 FROM

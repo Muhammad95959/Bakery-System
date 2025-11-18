@@ -1,3 +1,5 @@
+CREATE
+OR REPLACE VIEW week_revenue AS
 WITH days AS (
   SELECT
     generate_series(
