@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import bakeryLogo from "../../assets/bakery-logo.png";
 import customerIcon from "../../assets/icon-customer.png";
@@ -14,6 +15,7 @@ import { SidebarLink } from "../ui/SidebarLink";
 export default function Sidebar() {
   const navigate = useNavigate();
   const { pathname } = useLocation();
+  const logoutRef = useRef<HTMLButtonElement>(null);
 
   const links = [
     { to: "/dashboard", icon: dashboardIcon, label: "Dashboard" },
@@ -25,7 +27,11 @@ export default function Sidebar() {
   ];
 
   function logout() {
-    axios.get(`${BACKEND_URL}/auth/logout`, { withCredentials: true }).then(() => navigate("/login"));
+    logoutRef.current?.classList.add("animate-pulse");
+    axios
+      .get(`${BACKEND_URL}/auth/logout`, { withCredentials: true })
+      .then(() => navigate("/login"))
+      .finally(() => logoutRef.current?.classList.remove("animate-pulse"));
   }
 
   return (
@@ -46,6 +52,7 @@ export default function Sidebar() {
         <button
           onClick={logout}
           className="flex gap-1 justify-center mt-20 mb-10 items-center bg-[#FF7C00] p-1.5 rounded-[10px] w-[60%] cursor-pointer hover:opacity-90"
+          ref={logoutRef}
         >
           <p className="text-[24px] text-[#F7E9B2]">Logout</p>
           <div className="w-9 flex justify-center">
