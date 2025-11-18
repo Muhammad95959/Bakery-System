@@ -83,6 +83,7 @@ export default function EditStaff() {
             className="p-20 shadow-[4px_4px_12px_rgba(0,0,0,0.3)] rounded-xl border border-[rgba(87,90,56,0.26)]"
           >
             <input
+              required
               type="text"
               placeholder="Username"
               className="w-full mb-6 p-4 border border-[rgba(87,90,56,0.26)] rounded-md placeholder-[rgba(107,61,36,0.9)]"
@@ -90,6 +91,7 @@ export default function EditStaff() {
               defaultValue={user?.username}
             />
             <input
+              required
               type="text"
               placeholder="Password"
               className="w-full mb-6 p-4 border border-[rgba(87,90,56,0.26)] rounded-md placeholder-[rgba(107,61,36,0.9)]"
@@ -106,6 +108,7 @@ export default function EditStaff() {
               <div className="relative flex-1">
                 <span className="absolute right-5 top-1/2 -translate-y-1/2 rotate-90 text-[#6B3D24]">&gt;</span>
                 <select
+                  required
                   id="role"
                   className="border border-[rgba(87,90,56,0.26)] p-4 rounded-md text-[rgba(107,61,36,0.9)] appearance-none w-full"
                   ref={roleRef}

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import bakeryLogo from "../../assets/bakery-logo.png";
 import customerIcon from "../../assets/icon-customer.png";
@@ -16,6 +16,7 @@ export default function Sidebar() {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const logoutRef = useRef<HTMLButtonElement>(null);
+  const [quitting, setQuitting] = useState(false);
 
   const links = [
     { to: "/dashboard", icon: dashboardIcon, label: "Dashboard" },
@@ -27,11 +28,16 @@ export default function Sidebar() {
   ];
 
   function logout() {
+    if (quitting) return;
+    setQuitting(true);
     logoutRef.current?.classList.add("animate-pulse");
     axios
       .get(`${BACKEND_URL}/auth/logout`, { withCredentials: true })
       .then(() => navigate("/login"))
-      .finally(() => logoutRef.current?.classList.remove("animate-pulse"));
+      .finally(() => {
+        setQuitting(false);
+        logoutRef.current?.classList.remove("animate-pulse");
+      });
   }
 
   return (

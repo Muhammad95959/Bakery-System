@@ -160,6 +160,7 @@ export default function EditProduct() {
                 <label className="mb-5">
                   <p className="text-2xl font-semibold text-[#6B3D24] ml-3 mb-2">Price</p>
                   <input
+                    required
                     type="text"
                     className="w-full mb-6 p-4 bg-[#FFFDF2] border-3 border-[#FBEFD1] rounded-2xl placeholder-[rgba(107,61,36,0.9)] caret-[rgba(87,90,56,0.52)]"
                     ref={priceRef}
@@ -169,6 +170,7 @@ export default function EditProduct() {
                 <label className="mb-5">
                   <p className="text-2xl font-semibold text-[#6B3D24] ml-3 mb-2">Stock</p>
                   <input
+                    required
                     type="text"
                     className="w-full mb-6 p-4 bg-[#FFFDF2] border-3 border-[#FBEFD1] rounded-2xl placeholder-[rgba(107,61,36,0.9)] caret-[rgba(87,90,56,0.52)]"
                     ref={stockRef}

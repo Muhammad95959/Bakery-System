@@ -81,6 +81,7 @@ export default function EditCustomer() {
             className="p-20 shadow-[4px_4px_12px_rgba(0,0,0,0.3)] rounded-xl border border-[rgba(87,90,56,0.26)]"
           >
             <input
+              required
               type="text"
               placeholder="name"
               className="w-full mb-6 p-4 border border-[rgba(87,90,56,0.26)] rounded-md placeholder-[rgba(107,61,36,0.9)]"
