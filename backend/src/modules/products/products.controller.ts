@@ -93,6 +93,7 @@ export async function deleteProduct(req: Request, res: Response) {
     const { id } = req.params;
     const oldProduct = await prisma.product.findUnique({ where: { id: parseInt(id) } });
     if (!oldProduct) return res.status(404).json({ status: "fail", message: "Product was not found" });
+    if (oldProduct.image) await deleteProductImage(oldProduct);
     await prisma.product.update({ where: { id: parseInt(id) }, data: { deleted: true } });
     res.status(200).json({ status: "success", message: "Product was deleted successfully" });
   } catch (err) {
