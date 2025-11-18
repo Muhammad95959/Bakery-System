@@ -17,7 +17,7 @@ export default function ProductInfo(props: {
   unAuthorized: boolean;
   handleDeleteProduct: (id: number) => void;
 }) {
-  const imagePath = (props.image && `${BACKEND_URL.replace("/api", "/images")}/${props.image}`) || genericImage;
+  const imagePath = props.image || genericImage;
   const [showDialogBox, setShowDialogBox] = useState(false);
 
   function deleteProduct() {

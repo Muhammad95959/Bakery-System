@@ -142,10 +142,7 @@ export default function AddOrder() {
                     className="p-2 flex gap-4 items-center border border-[rgba(87,90,56,0.26)] rounded-md hover:bg-[#FFF8E2] cursor-pointer"
                     onClick={(e) => addProductToCart(e, product)}
                   >
-                    <img
-                      src={`${(product.image && BACKEND_URL.replace("/api", "/images/") + product.image) || genericImage}`}
-                      className="w-9 h-9 object-cover rounded-md"
-                    />
+                    <img src={product.image || genericImage} className="w-9 h-9 object-cover rounded-md" />
                     <div>
                       <p className="font-bold">{product.name}</p>
                       <p>stock: {product.stock}</p>
@@ -164,10 +161,7 @@ export default function AddOrder() {
                     className="p-2 flex gap-4 items-center justify-between border border-[rgba(87,90,56,0.26)] rounded-md"
                   >
                     <div className="flex gap-4 items-center">
-                      <img
-                        src={`${(product.image && BACKEND_URL.replace("/api", "/images/") + product.image) || genericImage}`}
-                        className="w-9 h-9 object-cover rounded-md"
-                      />
+                      <img src={product.image || genericImage} className="w-9 h-9 object-cover rounded-md" />
                       <div>
                         <p className="font-bold">{product.name}</p>
                         <p>${product.price}</p>

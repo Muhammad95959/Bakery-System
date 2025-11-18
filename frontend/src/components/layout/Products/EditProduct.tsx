@@ -42,8 +42,7 @@ export default function EditProduct() {
       .get(`${BACKEND_URL}/products/${id}`, { withCredentials: true })
       .then((res) => {
         setProduct(res.data.data.product);
-        if (res.data.data.product.image)
-          setImageUrl(`${BACKEND_URL.replace("/api", "/images")}/${res.data.data.product.image}`);
+        if (res.data.data.product.image) setImageUrl(res.data.data.product.image);
         else setImageUrl("");
         setLoading(false);
       })
