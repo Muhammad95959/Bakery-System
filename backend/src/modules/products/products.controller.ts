@@ -1,25 +1,13 @@
+import { del, put, PutBlobResult } from "@vercel/blob";
 import { Request, Response } from "express";
-import { promises as fs } from "fs";
 import multer from "multer";
-import path from "path";
+import sharp from "sharp";
 import prisma from "../../config/db";
-import SharpMulter from "sharp-multer";
 import { Product } from "../../generated/prisma/browser";
 
-const storage = SharpMulter({
-  destination: (_req: any, _file: any, callback: (arg0: null, arg1: string) => any) => callback(null, "uploads"),
-  filename: (originalName: string, options: { fileFormat: any }) => {
-    const name = originalName.split(".")[0];
-    return `${Date.now()}-${name}.${options.fileFormat}`;
-  },
-  imageOptions: {
-    fileFormat: "jpg",
-    quality: 80,
-    resize: { width: 288, height: 288 },
-  },
-});
+const upload = multer({ storage: multer.memoryStorage() });
 
-export const upload = multer({ storage });
+export const multerMiddleware = upload.single("image");
 
 export async function getAllProducts(_req: Request, res: Response) {
   try {
@@ -44,22 +32,36 @@ export async function getProductById(req: Request, res: Response) {
 }
 
 export async function createProduct(req: Request, res: Response) {
+  let blob: PutBlobResult | null = null;
   try {
-    const filename = req.file?.filename;
+    const file = req.file;
+    if (file) {
+      const { buffer, originalname } = file;
+      const processed = await sharp(buffer).resize(288, 288).jpeg({ quality: 80 }).toBuffer();
+      const filename = `${Date.now()}-${originalname.split(".")[0]}.jpg`;
+      blob = await put(`uploads/${filename}`, processed, {
+        access: "public",
+        contentType: "image/jpeg",
+        token: process.env.BLOB_READ_WRITE_TOKEN,
+      });
+    }
     const { name, category, price, stock } = req.body;
-    const product = await prisma.product.create({ data: { name, category, price, stock, image: filename } });
+    const product = await prisma.product.create({
+      data: { name, category, price, stock, image: blob ? blob.url : null },
+    });
     res.status(201).json({ status: "success", data: { product } });
   } catch (err) {
     console.log(err);
-    if (req.file) {
-      const imagePath = path.resolve("uploads", req.file.filename);
+    if (blob) {
       try {
-        await fs.unlink(imagePath);
+        await del(blob.url, { token: process.env.BLOB_READ_WRITE_TOKEN });
       } catch (err: any) {
-        console.warn(`Failed to delete image: ${imagePath}`, err);
+        console.log(`Failed to delete Blob image: ${blob.url}`, err);
       }
     }
-    res.status(500).json({ status: "fail", message: "Something went wrong" });
+    if ((err as Error).message.includes("Vercel Blob: Access denied, please provide a valid token for this resource."))
+      res.status(401).json({ status: "fail", message: "Please provide a valid vercel token" });
+    else res.status(500).json({ status: "fail", message: "Something went wrong" });
   }
 }
 
@@ -67,24 +69,37 @@ export async function updateProduct(req: Request, res: Response) {
   try {
     const { id } = req.params;
     const { removeImage } = req.query;
-    const filename = req.file?.filename;
+    const file = req.file;
+    let blob: PutBlobResult | null = null;
+    if (file) {
+      const { buffer, originalname } = file;
+      const processed = await sharp(buffer).resize(288, 288).jpeg({ quality: 80 }).toBuffer();
+      const filename = `${Date.now()}-${originalname.split(".")[0]}.jpg`;
+      blob = await put(`uploads/${filename}`, processed, {
+        access: "public",
+        contentType: "image/jpeg",
+        token: process.env.BLOB_READ_WRITE_TOKEN,
+      });
+    }
     const { name, category, price, stock } = req.body;
     if (!name || !category || !price || !stock)
       return res.status(400).json({ status: "fail", message: "Please provide all the required fields" });
     const oldProduct = await prisma.product.findUnique({ where: { id: parseInt(id) } });
     if (!oldProduct) return res.status(404).json({ status: "fail", message: "Product was not found" });
-    let imageName = oldProduct.image;
-    if (filename) imageName = filename;
-    else if (removeImage === "true") imageName = null;
-    if (filename || removeImage === "true") await deleteProductImage(oldProduct);
+    let image = oldProduct.image;
+    if (blob) image = blob.url;
+    else if (removeImage === "true") image = null;
+    if (blob || removeImage === "true") await deleteProductImage(oldProduct);
     const product = await prisma.product.update({
       where: { id: parseInt(id) },
-      data: { name, category, price, stock, image: imageName },
+      data: { name, category, price, stock, image },
     });
     res.status(200).json({ status: "success", data: { product } });
   } catch (err) {
     console.log(err);
-    res.status(500).json({ status: "fail", message: "Something went wrong" });
+    if ((err as Error).message.includes("Vercel Blob: Access denied, please provide a valid token for this resource."))
+      res.status(401).json({ status: "fail", message: "Please provide a valid vercel token" });
+    else res.status(500).json({ status: "fail", message: "Something went wrong" });
   }
 }
 
@@ -93,6 +108,7 @@ export async function deleteProduct(req: Request, res: Response) {
     const { id } = req.params;
     const oldProduct = await prisma.product.findUnique({ where: { id: parseInt(id) } });
     if (!oldProduct) return res.status(404).json({ status: "fail", message: "Product was not found" });
+    if (oldProduct.image) await del(oldProduct.image, { token: process.env.BLOB_READ_WRITE_TOKEN });
     await prisma.product.update({ where: { id: parseInt(id) }, data: { deleted: true } });
     res.status(200).json({ status: "success", message: "Product was deleted successfully" });
   } catch (err) {
@@ -102,12 +118,10 @@ export async function deleteProduct(req: Request, res: Response) {
 }
 
 async function deleteProductImage(product: Product) {
-  if (product.image) {
-    const imagePath = path.resolve("uploads", product.image);
-    try {
-      await fs.unlink(imagePath);
-    } catch (err: any) {
-      console.warn(`Failed to delete image: ${imagePath}`, err);
-    }
+  try {
+    if (!product.image) return;
+    await del(product.image, { token: process.env.BLOB_READ_WRITE_TOKEN });
+  } catch (err) {
+    console.log(`Failed to delete Blob image: ${product.image}`, err);
   }
 }

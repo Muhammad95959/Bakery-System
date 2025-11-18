@@ -13,7 +13,7 @@ router.post(
   "/",
   authController.protect,
   authController.restrict(Role.ADMIN),
-  productsController.upload.single("image"),
+  productsController.multerMiddleware,
   productsController.createProduct,
 );
 
@@ -21,7 +21,7 @@ router.put(
   "/:id",
   authController.protect,
   authController.restrict(Role.ADMIN),
-  productsController.upload.single("image"),
+  productsController.multerMiddleware,
   productsController.updateProduct,
 );
 

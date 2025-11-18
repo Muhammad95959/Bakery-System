@@ -13,6 +13,7 @@
   "packageManager": "pnpm@10.18.3",
   "dependencies": {
     "@prisma/client": "^6.19.0",
+    "@vercel/blob": "^2.0.0",
     "bcryptjs": "^3.0.2",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
@@ -20,7 +21,7 @@
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
     "multer": "^2.0.2",
-    "sharp-multer": "^0.3.3"
+    "sharp": "^0.34.5"
   },
   "devDependencies": {
     "@types/cookie-parser": "^1.4.10",
@@ -29,6 +30,7 @@
     "@types/jsonwebtoken": "^9.0.10",
     "@types/multer": "^2.0.0",
     "@types/node": "^24.9.1",
+    "@types/sharp": "^0.32.0",
     "prisma": "^6.19.0",
     "tsx": "^4.20.6",
     "typescript": "^5.9.3"
