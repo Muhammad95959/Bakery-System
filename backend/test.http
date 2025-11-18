@@ -4,13 +4,13 @@
 
 ### authorize
 
-GET http://localhost:7373/api/auth
-Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxOTY3YTk2LTgxNjItNDczZC04MmNjLTY1MzMzYmE2MzNkZiIsImlhdCI6MTc2MzMyNTY5MiwiZXhwIjoxNzYzOTMwNDkyfQ.gbRR57y97Y0ByIOdOT2H4ESrHXIqCBB-HDMa1cpYjxI; Path=/; HttpOnly
+GET https://bakery-system-backend-nine.vercel.app/api/auth
+cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBjNmJkYWRlLTc0OWEtNGRjOC1iY2U3LTM4MDNhNDRlOWU2YSIsImlhdCI6MTc2MzQ0MjI0MCwiZXhwIjoxNzY0MDQ3MDQwfQ.lnQ-vsBZrbnpYlcLe4u7DyBK-rll7OZfJ2BygvwbWrE; Path=/; HttpOnly; Secure; SameSite=None
 
 
 ### login
 
-POST http://localhost:7373/api/auth/login
+POST https://bakery-system-backend-nine.vercel.app/api/auth/login
 Content-Type: application/json
 
 {
@@ -21,7 +21,7 @@ Content-Type: application/json
 
 ### logout
 
-GET http://localhost:7373/api/auth/logout
+GET https://bakery-system-backend-nine.vercel.app/api/auth/logout
 
 
 #############
@@ -30,21 +30,21 @@ GET http://localhost:7373/api/auth/logout
 
 ### get all users
 
-GET http://localhost:7373/api/users
-Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxOTY3YTk2LTgxNjItNDczZC04MmNjLTY1MzMzYmE2MzNkZiIsImlhdCI6MTc2MzMyNTY5MiwiZXhwIjoxNzYzOTMwNDkyfQ.gbRR57y97Y0ByIOdOT2H4ESrHXIqCBB-HDMa1cpYjxI; Path=/; HttpOnly
+GET https://bakery-system-backend-nine.vercel.app/api/users
+cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBjNmJkYWRlLTc0OWEtNGRjOC1iY2U3LTM4MDNhNDRlOWU2YSIsImlhdCI6MTc2MzQ0MjI0MCwiZXhwIjoxNzY0MDQ3MDQwfQ.lnQ-vsBZrbnpYlcLe4u7DyBK-rll7OZfJ2BygvwbWrE; Path=/; HttpOnly; Secure; SameSite=None
 
 
 ### get user by id
 
-GET http://localhost:7373/api/users/ceb0b46c-9283-4dc2-9971-165fc700fb95
-Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxOTY3YTk2LTgxNjItNDczZC04MmNjLTY1MzMzYmE2MzNkZiIsImlhdCI6MTc2MzMyNTY5MiwiZXhwIjoxNzYzOTMwNDkyfQ.gbRR57y97Y0ByIOdOT2H4ESrHXIqCBB-HDMa1cpYjxI; Path=/; HttpOnly
+GET https://bakery-system-backend-nine.vercel.app/api/users/ceb0b46c-9283-4dc2-9971-165fc700fb95
+cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBjNmJkYWRlLTc0OWEtNGRjOC1iY2U3LTM4MDNhNDRlOWU2YSIsImlhdCI6MTc2MzQ0MjI0MCwiZXhwIjoxNzY0MDQ3MDQwfQ.lnQ-vsBZrbnpYlcLe4u7DyBK-rll7OZfJ2BygvwbWrE; Path=/; HttpOnly; Secure; SameSite=None
 
 
 ### create new user
 
-POST http://localhost:7373/api/users
+POST https://bakery-system-backend-nine.vercel.app/api/users
 Content-Type: application/json
-Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxOTY3YTk2LTgxNjItNDczZC04MmNjLTY1MzMzYmE2MzNkZiIsImlhdCI6MTc2MzMyNTY5MiwiZXhwIjoxNzYzOTMwNDkyfQ.gbRR57y97Y0ByIOdOT2H4ESrHXIqCBB-HDMa1cpYjxI; Path=/; HttpOnly
+cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBjNmJkYWRlLTc0OWEtNGRjOC1iY2U3LTM4MDNhNDRlOWU2YSIsImlhdCI6MTc2MzQ0MjI0MCwiZXhwIjoxNzY0MDQ3MDQwfQ.lnQ-vsBZrbnpYlcLe4u7DyBK-rll7OZfJ2BygvwbWrE; Path=/; HttpOnly; Secure; SameSite=None
 
 {
   "username": "ahmed",
@@ -54,9 +54,9 @@ Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxOTY3YTk2LTgxNjItNDc
 
 ### update user
 
-PUT http://localhost:7373/api/users/24cf3678-6b42-4b87-968d-a7e4038054d2
+PUT https://bakery-system-backend-nine.vercel.app/api/users/24cf3678-6b42-4b87-968d-a7e4038054d2
 Content-Type: application/json
-Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxOTY3YTk2LTgxNjItNDczZC04MmNjLTY1MzMzYmE2MzNkZiIsImlhdCI6MTc2MzMyNTY5MiwiZXhwIjoxNzYzOTMwNDkyfQ.gbRR57y97Y0ByIOdOT2H4ESrHXIqCBB-HDMa1cpYjxI; Path=/; HttpOnly
+cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBjNmJkYWRlLTc0OWEtNGRjOC1iY2U3LTM4MDNhNDRlOWU2YSIsImlhdCI6MTc2MzQ0MjI0MCwiZXhwIjoxNzY0MDQ3MDQwfQ.lnQ-vsBZrbnpYlcLe4u7DyBK-rll7OZfJ2BygvwbWrE; Path=/; HttpOnly; Secure; SameSite=None
 
 {
   "username": "muhammad",
@@ -67,8 +67,8 @@ Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxOTY3YTk2LTgxNjItNDc
 
 ### delete user
 
-DELETE http://localhost:7373/api/users/b0b76520-3705-4ac0-aaea-c5c8990ebf37
-Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxOTY3YTk2LTgxNjItNDczZC04MmNjLTY1MzMzYmE2MzNkZiIsImlhdCI6MTc2MzMyNTY5MiwiZXhwIjoxNzYzOTMwNDkyfQ.gbRR57y97Y0ByIOdOT2H4ESrHXIqCBB-HDMa1cpYjxI; Path=/; HttpOnly
+DELETE https://bakery-system-backend-nine.vercel.app/api/users/b0b76520-3705-4ac0-aaea-c5c8990ebf37
+cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBjNmJkYWRlLTc0OWEtNGRjOC1iY2U3LTM4MDNhNDRlOWU2YSIsImlhdCI6MTc2MzQ0MjI0MCwiZXhwIjoxNzY0MDQ3MDQwfQ.lnQ-vsBZrbnpYlcLe4u7DyBK-rll7OZfJ2BygvwbWrE; Path=/; HttpOnly; Secure; SameSite=None
 
 
 #################
@@ -77,21 +77,21 @@ Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxOTY3YTk2LTgxNjItNDc
 
 ### get all customers
 
-GET http://localhost:7373/api/customers
-Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxOTY3YTk2LTgxNjItNDczZC04MmNjLTY1MzMzYmE2MzNkZiIsImlhdCI6MTc2MzMyNTY5MiwiZXhwIjoxNzYzOTMwNDkyfQ.gbRR57y97Y0ByIOdOT2H4ESrHXIqCBB-HDMa1cpYjxI; Path=/; HttpOnly
+GET https://bakery-system-backend-nine.vercel.app/api/customers
+cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBjNmJkYWRlLTc0OWEtNGRjOC1iY2U3LTM4MDNhNDRlOWU2YSIsImlhdCI6MTc2MzQ0MjI0MCwiZXhwIjoxNzY0MDQ3MDQwfQ.lnQ-vsBZrbnpYlcLe4u7DyBK-rll7OZfJ2BygvwbWrE; Path=/; HttpOnly; Secure; SameSite=None
 
 
 ### get customer by id
 
-GET http://localhost:7373/api/customers/318528cd-251b-42df-84e1-5eabc183ede3
-Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxOTY3YTk2LTgxNjItNDczZC04MmNjLTY1MzMzYmE2MzNkZiIsImlhdCI6MTc2MzMyNTY5MiwiZXhwIjoxNzYzOTMwNDkyfQ.gbRR57y97Y0ByIOdOT2H4ESrHXIqCBB-HDMa1cpYjxI; Path=/; HttpOnly
+GET https://bakery-system-backend-nine.vercel.app/api/customers/318528cd-251b-42df-84e1-5eabc183ede3
+cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBjNmJkYWRlLTc0OWEtNGRjOC1iY2U3LTM4MDNhNDRlOWU2YSIsImlhdCI6MTc2MzQ0MjI0MCwiZXhwIjoxNzY0MDQ3MDQwfQ.lnQ-vsBZrbnpYlcLe4u7DyBK-rll7OZfJ2BygvwbWrE; Path=/; HttpOnly; Secure; SameSite=None
 
 
 ### create new customer
 
-POST http://localhost:7373/api/customers
+POST https://bakery-system-backend-nine.vercel.app/api/customers
 Content-Type: application/json
-Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxOTY3YTk2LTgxNjItNDczZC04MmNjLTY1MzMzYmE2MzNkZiIsImlhdCI6MTc2MzMyNTY5MiwiZXhwIjoxNzYzOTMwNDkyfQ.gbRR57y97Y0ByIOdOT2H4ESrHXIqCBB-HDMa1cpYjxI; Path=/; HttpOnly
+cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBjNmJkYWRlLTc0OWEtNGRjOC1iY2U3LTM4MDNhNDRlOWU2YSIsImlhdCI6MTc2MzQ0MjI0MCwiZXhwIjoxNzY0MDQ3MDQwfQ.lnQ-vsBZrbnpYlcLe4u7DyBK-rll7OZfJ2BygvwbWrE; Path=/; HttpOnly; Secure; SameSite=None
 
 {
   "name": "ahmed",
@@ -103,9 +103,9 @@ Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxOTY3YTk2LTgxNjItNDc
 
 ### update customer
 
-PUT http://localhost:7373/api/customers/318528cd-251b-42df-84e1-5eabc183ede3
+PUT https://bakery-system-backend-nine.vercel.app/api/customers/318528cd-251b-42df-84e1-5eabc183ede3
 Content-Type: application/json
-Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxOTY3YTk2LTgxNjItNDczZC04MmNjLTY1MzMzYmE2MzNkZiIsImlhdCI6MTc2MzMyNTY5MiwiZXhwIjoxNzYzOTMwNDkyfQ.gbRR57y97Y0ByIOdOT2H4ESrHXIqCBB-HDMa1cpYjxI; Path=/; HttpOnly
+cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBjNmJkYWRlLTc0OWEtNGRjOC1iY2U3LTM4MDNhNDRlOWU2YSIsImlhdCI6MTc2MzQ0MjI0MCwiZXhwIjoxNzY0MDQ3MDQwfQ.lnQ-vsBZrbnpYlcLe4u7DyBK-rll7OZfJ2BygvwbWrE; Path=/; HttpOnly; Secure; SameSite=None
 
 {
   "name": "muhammad",
@@ -116,8 +116,8 @@ Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxOTY3YTk2LTgxNjItNDc
 
 ### delete customer
 
-DELETE http://localhost:7373/api/customers/e1239588-c2a7-4427-9625-de8a9e1ec9cb
-Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxOTY3YTk2LTgxNjItNDczZC04MmNjLTY1MzMzYmE2MzNkZiIsImlhdCI6MTc2MzMyNTY5MiwiZXhwIjoxNzYzOTMwNDkyfQ.gbRR57y97Y0ByIOdOT2H4ESrHXIqCBB-HDMa1cpYjxI; Path=/; HttpOnly
+DELETE https://bakery-system-backend-nine.vercel.app/api/customers/e1239588-c2a7-4427-9625-de8a9e1ec9cb
+cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBjNmJkYWRlLTc0OWEtNGRjOC1iY2U3LTM4MDNhNDRlOWU2YSIsImlhdCI6MTc2MzQ0MjI0MCwiZXhwIjoxNzY0MDQ3MDQwfQ.lnQ-vsBZrbnpYlcLe4u7DyBK-rll7OZfJ2BygvwbWrE; Path=/; HttpOnly; Secure; SameSite=None
 
 
 ################
@@ -126,20 +126,20 @@ Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxOTY3YTk2LTgxNjItNDc
 
 ### get all products
 
-GET http://localhost:7373/api/products
-Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxOTY3YTk2LTgxNjItNDczZC04MmNjLTY1MzMzYmE2MzNkZiIsImlhdCI6MTc2MzMyNTY5MiwiZXhwIjoxNzYzOTMwNDkyfQ.gbRR57y97Y0ByIOdOT2H4ESrHXIqCBB-HDMa1cpYjxI; Path=/; HttpOnly
+GET https://bakery-system-backend-nine.vercel.app/api/products
+cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBjNmJkYWRlLTc0OWEtNGRjOC1iY2U3LTM4MDNhNDRlOWU2YSIsImlhdCI6MTc2MzQ0MjI0MCwiZXhwIjoxNzY0MDQ3MDQwfQ.lnQ-vsBZrbnpYlcLe4u7DyBK-rll7OZfJ2BygvwbWrE; Path=/; HttpOnly; Secure; SameSite=None
 
 
 ### get product by id
 
-GET http://localhost:7373/api/products/1
-Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxOTY3YTk2LTgxNjItNDczZC04MmNjLTY1MzMzYmE2MzNkZiIsImlhdCI6MTc2MzMyNTY5MiwiZXhwIjoxNzYzOTMwNDkyfQ.gbRR57y97Y0ByIOdOT2H4ESrHXIqCBB-HDMa1cpYjxI; Path=/; HttpOnly
+GET https://bakery-system-backend-nine.vercel.app/api/products/1
+cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBjNmJkYWRlLTc0OWEtNGRjOC1iY2U3LTM4MDNhNDRlOWU2YSIsImlhdCI6MTc2MzQ0MjI0MCwiZXhwIjoxNzY0MDQ3MDQwfQ.lnQ-vsBZrbnpYlcLe4u7DyBK-rll7OZfJ2BygvwbWrE; Path=/; HttpOnly; Secure; SameSite=None
 
 
 ### delete product
 
-DELETE http://localhost:7373/api/products/2
-Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxOTY3YTk2LTgxNjItNDczZC04MmNjLTY1MzMzYmE2MzNkZiIsImlhdCI6MTc2MzMyNTY5MiwiZXhwIjoxNzYzOTMwNDkyfQ.gbRR57y97Y0ByIOdOT2H4ESrHXIqCBB-HDMa1cpYjxI; Path=/; HttpOnly
+DELETE https://bakery-system-backend-nine.vercel.app/api/products/8
+cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBjNmJkYWRlLTc0OWEtNGRjOC1iY2U3LTM4MDNhNDRlOWU2YSIsImlhdCI6MTc2MzQ0MjI0MCwiZXhwIjoxNzY0MDQ3MDQwfQ.lnQ-vsBZrbnpYlcLe4u7DyBK-rll7OZfJ2BygvwbWrE; Path=/; HttpOnly; Secure; SameSite=None
 
 
 ##############
@@ -148,21 +148,21 @@ Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxOTY3YTk2LTgxNjItNDc
 
 ### get all orders
 
-GET http://localhost:7373/api/orders
-Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxOTY3YTk2LTgxNjItNDczZC04MmNjLTY1MzMzYmE2MzNkZiIsImlhdCI6MTc2MzMyNTY5MiwiZXhwIjoxNzYzOTMwNDkyfQ.gbRR57y97Y0ByIOdOT2H4ESrHXIqCBB-HDMa1cpYjxI; Path=/; HttpOnly
+GET https://bakery-system-backend-nine.vercel.app/api/orders
+cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBjNmJkYWRlLTc0OWEtNGRjOC1iY2U3LTM4MDNhNDRlOWU2YSIsImlhdCI6MTc2MzQ0MjI0MCwiZXhwIjoxNzY0MDQ3MDQwfQ.lnQ-vsBZrbnpYlcLe4u7DyBK-rll7OZfJ2BygvwbWrE; Path=/; HttpOnly; Secure; SameSite=None
 
 
 ### get order by id
 
-GET http://localhost:7373/api/orders/5
-Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxOTY3YTk2LTgxNjItNDczZC04MmNjLTY1MzMzYmE2MzNkZiIsImlhdCI6MTc2MzMyNTY5MiwiZXhwIjoxNzYzOTMwNDkyfQ.gbRR57y97Y0ByIOdOT2H4ESrHXIqCBB-HDMa1cpYjxI; Path=/; HttpOnly
+GET https://bakery-system-backend-nine.vercel.app/api/orders/5
+cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBjNmJkYWRlLTc0OWEtNGRjOC1iY2U3LTM4MDNhNDRlOWU2YSIsImlhdCI6MTc2MzQ0MjI0MCwiZXhwIjoxNzY0MDQ3MDQwfQ.lnQ-vsBZrbnpYlcLe4u7DyBK-rll7OZfJ2BygvwbWrE; Path=/; HttpOnly; Secure; SameSite=None
 
 
 ### place order
 
-POST http://localhost:7373/api/orders/place-order
+POST https://bakery-system-backend-nine.vercel.app/api/orders/place-order
 Content-Type: application/json
-Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxOTY3YTk2LTgxNjItNDczZC04MmNjLTY1MzMzYmE2MzNkZiIsImlhdCI6MTc2MzMyNTY5MiwiZXhwIjoxNzYzOTMwNDkyfQ.gbRR57y97Y0ByIOdOT2H4ESrHXIqCBB-HDMa1cpYjxI; Path=/; HttpOnly
+cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBjNmJkYWRlLTc0OWEtNGRjOC1iY2U3LTM4MDNhNDRlOWU2YSIsImlhdCI6MTc2MzQ0MjI0MCwiZXhwIjoxNzY0MDQ3MDQwfQ.lnQ-vsBZrbnpYlcLe4u7DyBK-rll7OZfJ2BygvwbWrE; Path=/; HttpOnly; Secure; SameSite=None
 
 {
   "customer": "muhammad",
@@ -183,8 +183,8 @@ Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxOTY3YTk2LTgxNjItNDc
 
 ### undo order
 
-GET http://localhost:7373/api/orders/2/undo-order
-Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxOTY3YTk2LTgxNjItNDczZC04MmNjLTY1MzMzYmE2MzNkZiIsImlhdCI6MTc2MzMyNTY5MiwiZXhwIjoxNzYzOTMwNDkyfQ.gbRR57y97Y0ByIOdOT2H4ESrHXIqCBB-HDMa1cpYjxI; Path=/; HttpOnly
+GET https://bakery-system-backend-nine.vercel.app/api/orders/2/undo-order
+cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBjNmJkYWRlLTc0OWEtNGRjOC1iY2U3LTM4MDNhNDRlOWU2YSIsImlhdCI6MTc2MzQ0MjI0MCwiZXhwIjoxNzY0MDQ3MDQwfQ.lnQ-vsBZrbnpYlcLe4u7DyBK-rll7OZfJ2BygvwbWrE; Path=/; HttpOnly; Secure; SameSite=None
 
 
 #################
@@ -193,23 +193,23 @@ Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxOTY3YTk2LTgxNjItNDc
 
 ### orders today
 
-GET http://localhost:7373/api/analytics/orders-today
-Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxOTY3YTk2LTgxNjItNDczZC04MmNjLTY1MzMzYmE2MzNkZiIsImlhdCI6MTc2MzMyNTY5MiwiZXhwIjoxNzYzOTMwNDkyfQ.gbRR57y97Y0ByIOdOT2H4ESrHXIqCBB-HDMa1cpYjxI; Path=/; HttpOnly
+GET https://bakery-system-backend-nine.vercel.app/api/analytics/orders-today
+cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBjNmJkYWRlLTc0OWEtNGRjOC1iY2U3LTM4MDNhNDRlOWU2YSIsImlhdCI6MTc2MzQ0MjI0MCwiZXhwIjoxNzY0MDQ3MDQwfQ.lnQ-vsBZrbnpYlcLe4u7DyBK-rll7OZfJ2BygvwbWrE; Path=/; HttpOnly; Secure; SameSite=None
 
 
 ### top product
 
-GET http://localhost:7373/api/analytics/top-product
-Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxOTY3YTk2LTgxNjItNDczZC04MmNjLTY1MzMzYmE2MzNkZiIsImlhdCI6MTc2MzMyNTY5MiwiZXhwIjoxNzYzOTMwNDkyfQ.gbRR57y97Y0ByIOdOT2H4ESrHXIqCBB-HDMa1cpYjxI; Path=/; HttpOnly
+GET https://bakery-system-backend-nine.vercel.app/api/analytics/top-product
+cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBjNmJkYWRlLTc0OWEtNGRjOC1iY2U3LTM4MDNhNDRlOWU2YSIsImlhdCI6MTc2MzQ0MjI0MCwiZXhwIjoxNzY0MDQ3MDQwfQ.lnQ-vsBZrbnpYlcLe4u7DyBK-rll7OZfJ2BygvwbWrE; Path=/; HttpOnly; Secure; SameSite=None
 
 
 ### lowest stock products
 
-GET http://localhost:7373/api/analytics/lowest-stock-products
-Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxOTY3YTk2LTgxNjItNDczZC04MmNjLTY1MzMzYmE2MzNkZiIsImlhdCI6MTc2MzMyNTY5MiwiZXhwIjoxNzYzOTMwNDkyfQ.gbRR57y97Y0ByIOdOT2H4ESrHXIqCBB-HDMa1cpYjxI; Path=/; HttpOnly
+GET https://bakery-system-backend-nine.vercel.app/api/analytics/lowest-stock-products
+cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBjNmJkYWRlLTc0OWEtNGRjOC1iY2U3LTM4MDNhNDRlOWU2YSIsImlhdCI6MTc2MzQ0MjI0MCwiZXhwIjoxNzY0MDQ3MDQwfQ.lnQ-vsBZrbnpYlcLe4u7DyBK-rll7OZfJ2BygvwbWrE; Path=/; HttpOnly; Secure; SameSite=None
 
 
 ### week revenue
 
-GET http://localhost:7373/api/analytics/week-revenue
-Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxOTY3YTk2LTgxNjItNDczZC04MmNjLTY1MzMzYmE2MzNkZiIsImlhdCI6MTc2MzMyNTY5MiwiZXhwIjoxNzYzOTMwNDkyfQ.gbRR57y97Y0ByIOdOT2H4ESrHXIqCBB-HDMa1cpYjxI; Path=/; HttpOnly
+GET https://bakery-system-backend-nine.vercel.app/api/analytics/week-revenue
+cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBjNmJkYWRlLTc0OWEtNGRjOC1iY2U3LTM4MDNhNDRlOWU2YSIsImlhdCI6MTc2MzQ0MjI0MCwiZXhwIjoxNzY0MDQ3MDQwfQ.lnQ-vsBZrbnpYlcLe4u7DyBK-rll7OZfJ2BygvwbWrE; Path=/; HttpOnly; Secure; SameSite=None
