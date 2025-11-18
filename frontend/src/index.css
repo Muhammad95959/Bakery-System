@@ -16,6 +16,7 @@ body {
   animation: spin 1s linear infinite 0.5s;
 }
 
+.fade-in,
 .dialogbox {
   animation: show 0.5s forwards;
 }

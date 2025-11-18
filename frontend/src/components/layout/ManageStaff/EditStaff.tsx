@@ -71,7 +71,7 @@ export default function EditStaff() {
   return (
     <>
       {(loading && <Spinner />) || (
-        <div className="p-20 basis-[80%] min-w-225">
+        <div className="fade-in opacity-0 p-20 basis-[80%] min-w-225">
           <div className="flex justify-between items-center mb-20">
             <h1 className="text-[48px] font-semibold">Edit Staff</h1>
             <div className="image bg-[#FFF8E2] p-4 rounded-[50%]">

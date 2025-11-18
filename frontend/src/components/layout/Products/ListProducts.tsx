@@ -73,7 +73,7 @@ export default function ListProducts() {
   return (
     <>
       {(loading && <Spinner />) || (
-        <div className="p-20 basis-[80%] flex flex-col max-h-full min-w-225">
+        <div className="fade-in opacity-0 p-20 basis-[80%] flex flex-col max-h-full min-w-225">
           <div className="flex justify-between items-center mb-10">
             <h1 className="text-[48px] font-semibold">Products</h1>
             <div className="image bg-[#FFF8E2] p-4 rounded-[50%]">
