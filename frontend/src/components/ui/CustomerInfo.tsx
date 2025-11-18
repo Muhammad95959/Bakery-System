@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import editIcon from "../../assets/icon-edit.svg";
@@ -17,22 +17,32 @@ export default function CustomerInfo(props: {
   handleDeleteCustomer: (id: string) => void;
 }) {
   const [showDialogBox, setShowDialogBox] = useState(false);
+  const [deleting, setDeleting] = useState(false);
+  const rowRef = useRef<HTMLDivElement>(null);
 
   function deleteCustomer() {
+    if (deleting) return;
     setShowDialogBox(true);
   }
 
   function handleAnswer(answer: boolean) {
-    if (answer)
+    if (answer) {
+      setDeleting(true);
+      rowRef.current?.classList.add("animate-pulse");
       axios
         .delete(`${BACKEND_URL}/customers/${props.id}`, { withCredentials: true })
         .then(() => props.handleDeleteCustomer(props.id))
-        .catch((err) => toast.error(err.response.data.message));
+        .catch((err) => toast.error(err.response.data.message))
+        .finally(() => {
+          setDeleting(false);
+          rowRef.current?.classList.remove("animate-pulse");
+        });
+    }
     setShowDialogBox(false);
   }
 
   return (
-    <div className="p-6 border-t border-[rgba(87,90,56,0.26)] ">
+    <div className="p-6 border-t border-[rgba(87,90,56,0.26)]" ref={rowRef}>
       <div className="flex gap-6 justify-around items-center">
         <p className="flex-1/5 text-center">{props.name}</p>
         <p className="flex-1/5 text-center">{props.email}</p>

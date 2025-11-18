@@ -22,6 +22,8 @@ export default function OrderDetails() {
     unAuthorized: boolean;
   };
   const [showDialogBox, setShowDialogBox] = useState(false);
+  const [canceling, setCanceling] = useState(false);
+  const cancelRef = useRef<HTMLButtonElement>(null);
 
   let statusColor = "";
   switch (status.toLowerCase()) {
@@ -41,15 +43,23 @@ export default function OrderDetails() {
   }
 
   function cancelOrder() {
+    if (canceling) return;
     setShowDialogBox(true);
   }
 
   function handleAnswer(answer: boolean) {
-    if (answer)
+    if (answer) {
+      setCanceling(true);
+      cancelRef.current?.classList.add("animate-pulse");
       axios
         .get(`${BACKEND_URL}/orders/${id}/undo-order`, { withCredentials: true })
         .then(() => navigate("/orders"))
-        .catch((err) => toast.error(err.response.data.message));
+        .catch((err) => toast.error(err.response.data.message))
+        .finally(() => {
+          setCanceling(false);
+          cancelRef.current?.classList.remove("animate-pulse");
+        });
+    }
     setShowDialogBox(false);
   }
 
@@ -138,6 +148,7 @@ export default function OrderDetails() {
           className="bg-[#FBF7E6] text-[#6B3D24] border border-[rgba(87,90,56,0.12)] py-3 px-6 font-medium text-2xl rounded-xl hover:opacity-92 w-max cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
           onClick={cancelOrder}
           disabled={status === "CANCELED" || unAuthorized}
+          ref={cancelRef}
         >
           Cancel Order
         </button>

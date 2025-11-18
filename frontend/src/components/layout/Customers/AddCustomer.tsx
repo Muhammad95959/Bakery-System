@@ -9,11 +9,13 @@ import Spinner from "../../ui/spinner";
 export default function AddCustomer() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
+  const [submitting, setSubmitting] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
   const nameRef = useRef<HTMLInputElement>(null);
   const emialRef = useRef<HTMLInputElement>(null);
   const phoneRef = useRef<HTMLInputElement>(null);
   const addressRef = useRef<HTMLTextAreaElement>(null);
+  const submitRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     axios
@@ -30,6 +32,9 @@ export default function AddCustomer() {
 
   function addCustomer(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (submitting) return;
+    setSubmitting(true);
+    submitRef.current?.classList.add("animate-pulse");
     axios
       .post(
         `${BACKEND_URL}/customers`,
@@ -45,7 +50,11 @@ export default function AddCustomer() {
         formRef.current?.reset();
         toast.success("Customer was added successfully");
       })
-      .catch((err) => toast.error(err.response.data.message));
+      .catch((err) => toast.error(err.response.data.message))
+      .finally(() => {
+        setSubmitting(false);
+        submitRef.current?.classList.remove("animate-pulse");
+      });
   }
 
   return (
@@ -92,11 +101,14 @@ export default function AddCustomer() {
                 to="/customer"
                 className="basis-1/4 bg-[#FBF7E6] p-4 text-[#6B3D24] font-medium text-2xl border border-[rgba(87,90,56,0.12)] rounded-xl hover:opacity-92 cursor-pointer flex justify-center items-center"
               >
-                <button type="reset" className="cursor-pointer">Cancel</button>
+                <button type="reset" className="cursor-pointer">
+                  Cancel
+                </button>
               </Link>
               <button
                 type="submit"
                 className="bg-[#FFAC3E] p-4 text-white font-medium text-2xl rounded-xl hover:opacity-92 basis-1/4 cursor-pointer"
+                ref={submitRef}
               >
                 Add
               </button>

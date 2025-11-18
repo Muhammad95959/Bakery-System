@@ -15,6 +15,7 @@ export default function EditProduct() {
   const { id } = location.state as { id: string };
   const [product, setProduct] = useState<IProduct>();
   const [loading, setLoading] = useState(true);
+  const [submitting, setSubmitting] = useState(false);
   const [imageUrl, setImageUrl] = useState("");
   const [imageFile, setImageFile] = useState<File>();
   const [removeImage, setRemoveImage] = useState(false);
@@ -23,6 +24,7 @@ export default function EditProduct() {
   const categoryRef = useRef<HTMLSelectElement>(null);
   const priceRef = useRef<HTMLInputElement>(null);
   const stockRef = useRef<HTMLInputElement>(null);
+  const submitRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     axios
@@ -57,6 +59,9 @@ export default function EditProduct() {
 
   function updateProduct(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (submitting) return;
+    setSubmitting(true);
+    submitRef.current?.classList.add("animate-pulse");
     const formData = new FormData();
     if (imageFile) formData.append("image", imageFile);
     if (nameRef.current?.value) formData.append("name", nameRef.current.value);
@@ -66,7 +71,11 @@ export default function EditProduct() {
     axios
       .put(`${BACKEND_URL}/products/${id}?removeImage=${removeImage}`, formData, { withCredentials: true })
       .then(() => navigate("/products"))
-      .catch((err) => toast.error(err.response.data.message));
+      .catch((err) => toast.error(err.response.data.message))
+      .finally(() => {
+        setSubmitting(false);
+        submitRef.current?.classList.remove("animate-pulse");
+      });
   }
 
   function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -172,6 +181,7 @@ export default function EditProduct() {
               <button
                 type="submit"
                 className="bg-[#FFAC3E] p-4 text-white font-medium text-2xl rounded-xl hover:opacity-92 w-48 cursor-pointer"
+                ref={submitRef}
               >
                 Update
               </button>

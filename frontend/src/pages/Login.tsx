@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import bakeryLogo from "../assets/bakery-logo.png";
@@ -13,9 +13,14 @@ export default function Login() {
   const navigate = useNavigate();
   const usernameRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
+  const submitRef = useRef<HTMLButtonElement>(null);
+  const [submitting, setSubmitting] = useState(false);
 
   async function login(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (submitting) return;
+    setSubmitting(true);
+    submitRef.current?.classList.add("animate-pulse");
     await axios
       .post(
         `${BACKEND_URL}/auth/login`,
@@ -26,7 +31,11 @@ export default function Login() {
         { withCredentials: true },
       )
       .then(() => navigate("/dashboard"))
-      .catch((err) => toast.error(err.response.data.message));
+      .catch((err) => toast.error(err.response.data.message))
+      .finally(() => {
+        setSubmitting(false);
+        submitRef.current?.classList.remove("animate-pulse");
+      });
   }
 
   return (
@@ -66,6 +75,7 @@ export default function Login() {
           <button
             type="submit"
             className="p-5 w-full rounded-[10px] bg-[#FFB74A] text-white text-[28px] text-center cursor-pointer"
+            ref={submitRef}
           >
             Login
           </button>

@@ -5,7 +5,7 @@ import genericImage from "../../assets/icon-generic-image.svg";
 import { BACKEND_URL } from "../../constants";
 import { ToastContainer } from "react-toastify/unstyled";
 import DialogBox from "./DialogBox";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 export default function ProductInfo(props: {
   image?: string;
@@ -19,22 +19,32 @@ export default function ProductInfo(props: {
 }) {
   const imagePath = props.image || genericImage;
   const [showDialogBox, setShowDialogBox] = useState(false);
+  const [deleting, setDeleting] = useState(false);
+  const rowRef = useRef<HTMLDivElement>(null);
 
   function deleteProduct() {
+    if (deleting) return;
     setShowDialogBox(true);
   }
 
   function handleAnswer(answer: boolean) {
-    if (answer)
+    if (answer) {
+      setDeleting(true);
+      rowRef.current?.classList.add("animate-pulse");
       axios
         .delete(`${BACKEND_URL}/products/${props.id}`, { withCredentials: true })
         .then(() => props.handleDeleteProduct(props.id))
-        .catch((err) => toast.error(err.response.data.message));
+        .catch((err) => toast.error(err.response.data.message))
+        .finally(() => {
+          setDeleting(false);
+          rowRef.current?.classList.remove("animate-pulse");
+        });
+    }
     setShowDialogBox(false);
   }
 
   return (
-    <div className="p-6 border-t border-[rgba(87,90,56,0.26)] ">
+    <div className="p-6 border-t border-[rgba(87,90,56,0.26)]" ref={rowRef}>
       <div className="flex gap-6 justify-around items-center">
         <div className="flex-1/6 flex justify-center items-center">
           <img src={imagePath} className="w-12 h-12 rounded-2xl object-cover" />

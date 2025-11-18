@@ -11,6 +11,7 @@ import Spinner from "../../ui/spinner";
 export default function AddProduct() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
+  const [submitting, setSubmitting] = useState(false);
   const [imageFile, setImageFile] = useState<File>();
   const [imageUrl, setImageUrl] = useState("");
   const formRef = useRef<HTMLFormElement>(null);
@@ -19,6 +20,7 @@ export default function AddProduct() {
   const categoryRef = useRef<HTMLSelectElement>(null);
   const priceRef = useRef<HTMLInputElement>(null);
   const stockRef = useRef<HTMLInputElement>(null);
+  const submitRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     axios
@@ -38,6 +40,9 @@ export default function AddProduct() {
 
   function addProduct(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (submitting) return;
+    setSubmitting(true);
+    submitRef.current?.classList.add("animate-pulse");
     const formData = new FormData();
     if (imageFile) formData.append("image", imageFile);
     if (nameRef.current?.value) formData.append("name", nameRef.current.value);
@@ -52,7 +57,11 @@ export default function AddProduct() {
         setImageFile(undefined);
         toast.success("Product was added successfully");
       })
-      .catch((err) => toast.error(err.response.data.message));
+      .catch((err) => toast.error(err.response.data.message))
+      .finally(() => {
+        setSubmitting(false);
+        submitRef.current?.classList.remove("animate-pulse");
+      });
   }
 
   function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -154,6 +163,7 @@ export default function AddProduct() {
               <button
                 type="submit"
                 className="bg-[#FFAC3E] p-4 text-white font-medium text-2xl rounded-xl hover:opacity-92 w-48 cursor-pointer"
+                ref={submitRef}
               >
                 Save
               </button>

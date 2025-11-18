@@ -13,11 +13,13 @@ export default function EditStaff() {
   const { id } = location.state as { id: string };
   const [user, setUser] = useState<IUser>();
   const [loading, setLoading] = useState(true);
+  const [submitting, setSubmitting] = useState(false);
   const usernameRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
   const phoneRef = useRef<HTMLInputElement>(null);
   const roleRef = useRef<HTMLSelectElement>(null);
   const addressRef = useRef<HTMLTextAreaElement>(null);
+  const submitRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     axios
@@ -43,6 +45,9 @@ export default function EditStaff() {
 
   function updateUser(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (submitting) return;
+    setSubmitting(true);
+    submitRef.current?.classList.add("animate-pulse");
     axios
       .put(
         `${BACKEND_URL}/users/${id}`,
@@ -56,7 +61,11 @@ export default function EditStaff() {
         { withCredentials: true },
       )
       .then(() => navigate("/manage-staff"))
-      .catch((err) => toast.error(err.response.data.message));
+      .catch((err) => toast.error(err.response.data.message))
+      .finally(() => {
+        setSubmitting(false);
+        submitRef.current?.classList.remove("animate-pulse");
+      });
   }
 
   return (
@@ -128,6 +137,7 @@ export default function EditStaff() {
               <button
                 type="submit"
                 className="bg-[#FFAC3E] p-4 text-white font-medium text-2xl rounded-xl hover:opacity-92 basis-1/4 cursor-pointer"
+                ref={submitRef}
               >
                 Update
               </button>

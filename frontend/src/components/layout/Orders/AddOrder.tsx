@@ -14,6 +14,7 @@ import Spinner from "../../ui/spinner";
 export default function AddOrder() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
+  const [submitting, setSubmitting] = useState(false);
   const [products, setProducts] = useState<IProduct[]>([]);
   const [search, setSearch] = useState("");
   const [searchedProducts, setSearchedProducts] = useState<IProduct[]>([]);
@@ -25,6 +26,7 @@ export default function AddOrder() {
   const [customers, setCustomers] = useState<ICustomer[]>([]);
   const customerRef = useRef<HTMLSelectElement>(null);
   const paymentMethodRef = useRef<HTMLSelectElement>(null);
+  const submitRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     axios.get(`${BACKEND_URL}/auth`, { withCredentials: true }).catch((err) => {
@@ -96,6 +98,9 @@ export default function AddOrder() {
 
   function placeOrder(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (submitting) return;
+    setSubmitting(true);
+    submitRef.current?.classList.add("animate-pulse");
     if (cart.length === 0) return toast("Cart is empty");
     axios
       .post(
@@ -109,7 +114,11 @@ export default function AddOrder() {
         { withCredentials: true },
       )
       .then(() => navigate("/orders"))
-      .catch((err) => toast.error(err.response.data.message));
+      .catch((err) => toast.error(err.response.data.message))
+      .finally(() => {
+        setSubmitting(false);
+        submitRef.current?.classList.remove("animate-pulse");
+      });
   }
 
   return (
@@ -220,6 +229,7 @@ export default function AddOrder() {
                 <button
                   type="submit"
                   className="bg-[#FFAC3E] p-3 text-white font-medium text-2xl rounded-xl hover:opacity-92 basis-1/4 cursor-pointer"
+                  ref={submitRef}
                 >
                   Place Order
                 </button>

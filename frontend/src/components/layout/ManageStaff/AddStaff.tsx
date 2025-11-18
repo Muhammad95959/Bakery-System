@@ -14,7 +14,9 @@ export default function AddStaff() {
   const phoneRef = useRef<HTMLInputElement>(null);
   const roleRef = useRef<HTMLSelectElement>(null);
   const addressRef = useRef<HTMLTextAreaElement>(null);
+  const submitRef = useRef<HTMLButtonElement>(null);
   const [loading, setLoading] = useState(true);
+  const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
     axios
@@ -34,6 +36,9 @@ export default function AddStaff() {
 
   function addUser(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (submitting) return;
+    setSubmitting(true);
+    submitRef.current?.classList.add("animate-pulse");
     axios
       .post(
         `${BACKEND_URL}/users`,
@@ -50,7 +55,11 @@ export default function AddStaff() {
         formRef.current?.reset();
         toast.success("User was added successfully");
       })
-      .catch((err) => toast.error(err.response.data.message));
+      .catch((err) => toast.error(err.response.data.message))
+      .finally(() => {
+        setSubmitting(false);
+        submitRef.current?.classList.remove("animate-pulse");
+      });
   }
 
   return (
@@ -121,6 +130,7 @@ export default function AddStaff() {
               <button
                 type="submit"
                 className="bg-[#FFAC3E] p-4 text-white font-medium text-2xl rounded-xl hover:opacity-92 basis-1/4 cursor-pointer"
+                ref={submitRef}
               >
                 Add
               </button>
