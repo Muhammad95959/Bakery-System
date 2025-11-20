@@ -5,7 +5,7 @@ Username: **demo**
 Password: **demo**
 ## **Bakery-System** is a bakery management website where you can add staff members, customers, products or place orders with modern and sleek UI.
 * ### backend is mainly built using **Node.js**, **Express**, **Prisma** and **Postgresql**.
-* ### frontend is mainly build using **React** and **Tailwindcss**
+* ### frontend is mainly built using **React** and **Tailwindcss**
 
 <h1>Login</h1>
 <img width="1920" height="1080" alt="dashboard" src="https://github.com/user-attachments/assets/4078969d-0a9d-47cd-b60e-121f0ca12fa8" />
